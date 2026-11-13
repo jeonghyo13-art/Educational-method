@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>임용고시 교육학 마스터: 교육방법 편</title>
+    <title>임용고시 교육학 마스터: 교육방법 및 공학 편</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -43,16 +43,12 @@
     <header class="bg-transparent pt-12 pb-8">
         <div class="max-w-5xl mx-auto px-4 text-center">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-[#201D56] mb-3 tracking-tight">임용고시 교육학 마스터: 교육방법 및 공학 편</h1>
-            <p class="text-[#6B7280] mb-8 font-medium">전 범위 핵심 개념 인출 퀴즈 (무작위 셔플 & 오답노트 & 논술 모범 문장 제공)</p>
+            <p class="text-[#6B7280] mb-8 font-medium">전 범위 핵심 개념 인출 퀴즈 (무작위 셔플 & 논술 모범 문장 제공)</p>
             
             <nav class="flex justify-center flex-wrap gap-2" id="main-tabs">
                 <button onclick="setMode('all')" class="tab-btn tab-active px-6 py-2.5 rounded-xl font-bold transition" data-mode="all">전체 모의고사</button>
                 <button onclick="setMode('short')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition" data-mode="short">단답형 집중</button>
                 <button onclick="setMode('mcq')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition" data-mode="mcq">객관식 집중</button>
-                <button onclick="setMode('incorrect')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition relative" data-mode="incorrect">
-                    오답 노트 
-                    <span id="incorrect-badge" class="absolute -top-2 -right-2 bg-[#EF4444] text-white text-[11px] px-2 py-0.5 rounded-full hidden shadow-sm font-bold">0</span>
-                </button>
             </nav>
         </div>
     </header>
@@ -65,7 +61,7 @@
             </div>
             <h2 class="text-2xl font-bold text-slate-800 mb-4">학습을 시작할 준비가 되셨나요?</h2>
             <p class="text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto">
-                이 모의고사는 2026년 최신 교육 트렌드와 전통적 핵심 이론을 모두 반영하고 있습니다. 실제 시험과 동일한 감각으로 훈련해 보세요.
+                이 모의고사는 2026년 최신 교육 트렌드와 전통적 핵심 이론을 모두 반영하고 있습니다. 새로고침할 때마다 문제와 보기가 무작위로 섞입니다.
             </p>
             <button onclick="startQuiz()" class="bg-primary hover:bg-[#4a3fcc] text-white font-bold py-4 px-10 rounded-xl transition shadow-lg text-lg w-full sm:w-auto">
                 <i class="fa-solid fa-play mr-2"></i> 실전 훈련 시작하기
@@ -75,15 +71,15 @@
         <div id="quiz-screen" class="hidden mx-auto fade-in">
             <div class="glass-panel p-6 sm:p-10 mb-6">
                 
-                <div class="flex justify-between items-center mb-8 pb-4">
+                <div class="flex justify-between items-center mb-8 pb-4 border-b border-slate-100">
                     <span id="q-type" class="bg-[#EEEDFC] text-primary text-[13px] font-bold px-4 py-1.5 rounded-full">단답형/기입형</span>
                     <div class="text-slate-500 text-sm font-medium">
                         <span id="q-topic" class="mr-3">주제</span>
-                        <span id="progress-text" class="font-bold text-[#201D56] text-lg">1 / 70</span>
+                        <span id="progress-text" class="font-bold text-[#201D56] text-lg">1 / 50</span>
                     </div>
                 </div>
                 
-                <h3 id="question-text" class="text-[22px] sm:text-2xl font-bold text-slate-800 mb-8 leading-relaxed whitespace-pre-wrap word-break-keep-all"></h3>
+                <h3 id="question-text" class="text-[22px] sm:text-2xl font-bold text-slate-800 mb-8 leading-relaxed whitespace-pre-wrap break-keep"></h3>
                 
                 <div id="input-area" class="w-full mb-8"></div>
                 
@@ -116,7 +112,7 @@
                     <p id="essay-tip-text" class="text-[#9A3412] font-medium text-[15px] leading-relaxed"></p>
                 </div>
 
-                <div class="mt-2">
+                <div class="mt-2" id="next-btn-wrapper">
                     <button id="next-btn" onclick="nextQuestion()" class="bg-primary hover:bg-[#4a3fcc] text-white font-bold py-4 px-8 rounded-xl transition shadow-md w-full text-lg">
                         다음 문제로 이동 (Enter ↵)
                     </button>
@@ -127,11 +123,11 @@
         <div id="result-screen" class="hidden glass-panel p-10 text-center mx-auto mt-6 fade-in border-t-4 border-t-primary">
             <h2 class="text-2xl font-bold text-slate-800 mb-6">모의고사 완료!</h2>
             <div class="flex justify-center gap-6 mb-10">
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 w-32">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 w-36">
                     <p class="text-sm text-slate-500 mb-2">총 문항</p>
                     <p class="text-4xl font-extrabold text-slate-800" id="res-total">0</p>
                 </div>
-                <div class="bg-[#EEEDFC] p-6 rounded-2xl border border-[#D9D6FE] w-32">
+                <div class="bg-[#EEEDFC] p-6 rounded-2xl border border-[#D9D6FE] w-36">
                     <p class="text-sm text-primary mb-2">정답 수</p>
                     <p class="text-4xl font-extrabold text-primary" id="res-correct">0</p>
                 </div>
@@ -140,9 +136,6 @@
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <button onclick="startQuiz()" class="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 px-8 rounded-xl transition shadow-md">
                     <i class="fa-solid fa-rotate-right mr-2"></i> 다시 풀기 (셔플)
-                </button>
-                <button onclick="setMode('incorrect')" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-3.5 px-8 rounded-xl border border-rose-200 transition shadow-md">
-                    <i class="fa-solid fa-book-journal-whills mr-2"></i> 오답 노트 복습
                 </button>
             </div>
         </div>
@@ -230,7 +223,7 @@
                     "교수 프로그램의 형성평가 및 수정"
                 ],
                 a: "평가도구 설계 및 교수전략(매체) 선정",
-                exp: "요구분석, 학습자/환경/과제분석은 '분석(Analysis)' 단계입니다. 형성평가 및 수정은 '개발(Development)' 단계(또는 평가단계)에서 주로 일어납니다. '설계' 단계에서는 구체적인 수행목표 명시, 평가도구 설계, 교수전략 및 매체 선정이 이루어집니다.",
+                exp: "요구분석, 학습자/환경/과제분석은 '분석(Analysis)' 단계입니다. 형성평가 및 수정은 '개발(Development)' 단계에서 주로 일어납니다. '설계' 단계에서는 구체적인 수행목표 명시, 평가도구 설계, 교수전략 및 매체 선정이 이루어집니다.",
                 tip: "교수설계의 일관성을 확보하기 위해, 교사는 '분석' 단계에서 도출된 목표를 바탕으로 '설계' 단계에서 평가도구와 교수전략을 긴밀하게 연계하여 개발해야 한다.",
                 m: "분석(요구/학습자/과제) -> 설계(목표/평가/전략) -> 개발(자료제작/형성평가)"
             },
@@ -272,7 +265,7 @@
                 m: "형성평가 = 설계자(내부) 개선 / 총괄평가 = 외부자(독립) 가치판단"
             },
             {
-                id: 11, 대분류: "교수설계이론", topic: "롸이겔루스 교수의 3대 변인", type: "mcq",
+                id: 11, topic: "롸이겔루스 교수의 3대 변인", type: "mcq",
                 q: "롸이겔루스(Reigeluth)가 제시한 교수의 3대 변인 중 교사가 임의로 통제할 수 없는 '교수조건(Conditions)'에 해당하지 않는 것은?",
                 options: [
                     "교과내용의 특성",
@@ -327,13 +320,13 @@
                     "동기와의 부합성: 학습자의 성취욕구, 권력욕구 등 다양한 동기 유형에 맞는 역할을 부여한다."
                 ],
                 a: "공정성: 평가 기준과 결과를 투명하게 공개하여 보상에 대한 기대를 충족시킨다.",
-                exp: "공정성(공정성 유지)은 학습 후의 결과에 대한 만족감을 다루는 '만족감(Satisfaction)' 요소의 하위 전략입니다. 관련성 하위전략은 친밀성, 목적지향성, 필요나 동기와의 부합성입니다.",
+                exp: "공정성 유지는 학습 후의 결과에 대한 만족감을 다루는 '만족감(Satisfaction)' 요소의 하위 전략입니다. 관련성 하위전략은 친밀성, 목적지향성, 필요나 동기와의 부합성입니다.",
                 tip: "학습 동기를 유지하기 위해 교사는 실생활 사례를 통해 수업의 '관련성'을 확보하고, 평가의 '공정성'을 지켜 내적 '만족감'을 높여야 한다.",
                 m: "관련성(R) = 친/목/필 / 만족감(S) = 자/긍/공"
             },
             {
                 id: 16, topic: "캐롤 학교학습모형", type: "mcq",
-                q: "캐롤(Carroll)의 완전학습 모형에서 '학습에 필요한 시간'을 최소화하여 학습의 정도를 극대화하기 위한 '교사 변인'으로 묶인 것은?",
+                q: "캐롤(Carroll)의 학교학습모형에서 교사가 통제하고 개선할 수 있는 '교사 변인'으로만 바르게 묶인 것은?",
                 options: [
                     "교수의 질, 수업이해력",
                     "학습지속력, 학습 기회",
@@ -342,7 +335,7 @@
                 ],
                 a: "교수의 질, 학습 기회",
                 exp: "캐롤의 모형에서 '교수의 질'과 '학습 기회'는 교사가 통제하고 부여할 수 있는 교사 변인입니다. 반면 적성, 수업이해력, 학습지속력(지구력)은 학습자 개인의 변인입니다.",
-                tip: "학습 부진을 극복하기 위해, 교사는 '교수의 질'을 높여 명확한 단서를 제공함으로써 학생의 '수업 이해력'을 돕고 과제 완수에 필요한 시간을 단축시켜야 한다.",
+                tip: "학습 부진을 극복하기 위해, 교사는 '교수의 질'을 높여 명확한 단서를 제공함으로써 학생의 '수업 이해력'을 돕고 충분한 '학습 기회'를 보장해야 한다.",
                 m: "교사 변인 = 교수의 질, 학습 기회 / 학생 변인 = 적성, 이해력, 지속력"
             },
             {
@@ -408,7 +401,7 @@
             {
                 id: 22, topic: "상황학습이론", type: "short",
                 q: "라브와 웽거(Lave & Wenger)의 상황학습에서 학습자가 실천공동체(Community of Practice)의 초보자로서 제한적으로 참여하다가 점차 핵심적인 전문가 구성원으로 성장해 나가는 과정을 뜻하는 8글자의 용어는? (OOO OOO OO)",
-                accepted: ["정당한주변적참여", "정당한 주변적 참여"],
+                accepted: ["정당한주변적참여", "정당한 주변적 참여", "lpp"],
                 a: "정당한 주변적 참여 (LPP)",
                 exp: "학습은 개인이 지식을 획득하는 것이 아니라, 공동체의 일원으로서 '정당한 주변적 참여(Legitimate Peripheral Participation)'를 거쳐 전문가의 정체성을 형성하는 사회적 과정입니다.",
                 tip: "상황학습의 원리를 적용하여, 학생이 교실이라는 실천공동체 내에서 관찰자 및 보조자의 역할부터 시작해 점진적으로 문제해결의 중심 역할을 수행하는 '정당한 주변적 참여'를 경험하도록 설계해야 한다.",
@@ -491,7 +484,7 @@
             {
                 id: 29, topic: "토의식 수업 - 배심회의(패널토의)", type: "short",
                 q: "상반된 견해를 가진 3~6명의 소수 대표자(배심원)가 일반 청중 앞에서 사회자의 진행에 따라 토의하는 방식으로, 구성원의 전문적 식견이 반드시 필요하지는 않지만 다수의 다양한 의견을 수렴할 수 있는 토의 방식은 무엇인가?",
-                accepted: ["배심회의", "패널", "패널토의"],
+                accepted: ["배심회의", "패널", "패널토의", "배심토의"],
                 a: "배심회의(패널토의)",
                 exp: "패널토의는 찬반 양론의 대표들이 나와 토론하는 형식(예: 100분 토론)입니다. 반면 단상토의(심포지엄)는 각자 전문적 지식을 발표하는 강연 형식입니다.",
                 tip: "찬반 대립이 뚜렷한 사회적 이슈나 가치 판단 문제를 다룰 때, '패널토의'를 활용하여 학생들의 비판적 사고력과 타인의 의견을 경청하는 태도를 길러주어야 한다.",
@@ -584,13 +577,13 @@
                 id: 37, topic: "인지부하 이론 (멀티미디어 설계)", type: "mcq",
                 q: "멀티미디어 학습 시 인지부하(Cognitive Load) 이론에 근거할 때, 학습을 촉진하는 '본질적 인지부하'를 높이기 위한 설계 원리로 적절한 것은?",
                 options: [
-                    "관련 없는 배경음악이나 화려한 애니메이션을 삭제한다. (결합/중복 원리)",
+                    "관련 없는 배경음악이나 화려한 애니메이션을 삭제한다. (일관성/중복 원리)",
                     "글과 그림을 물리적으로 가까이 배치한다. (근접성 원리)",
                     "복잡한 자료를 제시하기 전에 관련 핵심 개념의 이름과 특성을 미리 제공한다. (사전 훈련 원리)",
                     "학습자 스스로 문제 풀이 과정을 설명하게 하거나 성찰할 기회를 제공한다. (자기설명 원리)"
                 ],
                 a: "학습자 스스로 문제 풀이 과정을 설명하게 하거나 성찰할 기회를 제공한다. (자기설명 원리)",
-                exp: "1,2번은 방해 요소인 '외생적 부하'를 줄이는 원리이고, 3번은 과제 자체 난이도인 '내재적 부하'를 관리하는 원리입니다. 스스로 설명하게 하는 것은 스키마 형성을 돕는 '본질적 인지부하' 촉진 원리입니다.",
+                exp: "1, 2번은 방해 요소인 '외생적 부하'를 줄이는 원리이고, 3번은 과제 자체 난이도인 '내재적 부하'를 관리하는 원리입니다. 스스로 설명하게 하는 것은 스키마 형성을 돕는 '본질적 인지부하' 촉진 원리입니다.",
                 tip: "제한된 작업기억 용량을 고려하여 불필요한 시각적 장식(외생적 부하)은 배제하고, 학습자가 스스로 개념을 연결하고 설명해 보는 '자기설명 원리(본질적 부하 촉진)'를 적용해야 한다.",
                 m: "내재적(과제 난이도) / 외생적(불필요한 방해) / 본질적(스키마 구축 노력=좋은 부하)"
             },
@@ -665,7 +658,7 @@
             },
             {
                 id: 44, topic: "AI 디지털 교과서", type: "mcq",
-                q: "2026년부터 전면 도입되는 AI 디지털 교과서의 특장점과 가장 관련이 적은 것은?",
+                q: "AI 디지털 교과서의 특장점과 가장 관련이 적은 것은?",
                 options: [
                     "종이 서책과 달리 동영상, 3D 콘텐츠 등 다양한 미디어를 품을 수 있다.",
                     "모든 학생에게 동일한 속도와 순서로 고정된 지식을 일방적으로 전송하는 데 최적화되어 있다.",
@@ -756,7 +749,6 @@
         let currentMode = 'all';
         let activeQuestions = [];
         let currentIndex = 0;
-        let incorrectQuestions = JSON.parse(localStorage.getItem('santaMethodsIncorrect')) || [];
         let score = 0;
         let isAnswerSubmitted = false;
 
@@ -770,6 +762,7 @@
             inputArea: document.getElementById('input-area'),
             submitBtn: document.getElementById('submit-btn'),
             nextBtn: document.getElementById('next-btn'),
+            nextBtnWrapper: document.getElementById('next-btn-wrapper'),
             feedbackCard: document.getElementById('feedback-card'),
             resultBanner: document.getElementById('result-banner'),
             resultIcon: document.getElementById('result-icon'),
@@ -777,39 +770,57 @@
             explanationText: document.getElementById('explanation-text'),
             essayTipText: document.getElementById('essay-tip-text'),
             mnemonicText: document.getElementById('mnemonic-text'),
-            progressText: document.getElementById('progress-text'),
-            incorrectBadge: document.getElementById('incorrect-badge')
+            progressText: document.getElementById('progress-text')
         };
 
-        function shuffleArray(array) {
-            let curId = array.length, temp, randomId;
-            while (0 !== curId) {
-                randomId = Math.floor(Math.random() * curId);
-                curId -= 1;
-                temp = array[curId];
-                array[curId] = array[randomId];
-                array[randomId] = temp;
+        // 암호학적 난수 생성기를 활용한 무작위 정수 반환
+        function getRandomInt(max) {
+            if (window.crypto && window.crypto.getRandomValues) {
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                return array[0] % max;
             }
-            return array;
+            return Math.floor(Math.random() * max);
+        }
+
+        // 원본 배열을 훼손하지 않는 Fisher-Yates 무작위 셔플
+        function shuffleArray(array) {
+            const copy = [...array];
+            for (let i = copy.length - 1; i > 0; i--) {
+                const j = getRandomInt(i + 1);
+                [copy[i], copy[j]] = [copy[j], copy[i]];
+            }
+            return copy;
+        }
+
+        // 객관식 보기가 원래 순서 및 직전 순서와 겹치지 않도록 보장하는 셔플
+        function shuffleOptions(question) {
+            const originalKey = question.options.join('||');
+            const prevKey = question._lastOptionOrder || '';
+            let shuffled = shuffleArray(question.options);
+            let attempts = 0;
+
+            while (
+                question.options.length > 1 &&
+                (shuffled.join('||') === originalKey || shuffled.join('||') === prevKey) &&
+                attempts < 15
+            ) {
+                shuffled = shuffleArray(question.options);
+                attempts++;
+            }
+
+            question._lastOptionOrder = shuffled.join('||');
+            return shuffled;
         }
 
         function normalizeString(str) {
-            return str.replace(/[\s\-_,.]/g, '').toLowerCase();
-        }
-
-        function updateIncorrectBadge() {
-            if (incorrectQuestions.length > 0) {
-                DOM.incorrectBadge.textContent = incorrectQuestions.length;
-                DOM.incorrectBadge.classList.remove('hidden');
-            } else {
-                DOM.incorrectBadge.classList.add('hidden');
-            }
+            return str.replace(/[\s\-_,.()]/g, '').toLowerCase();
         }
 
         function setMode(mode) {
             currentMode = mode;
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                if(btn.dataset.mode === mode) {
+                if (btn.dataset.mode === mode) {
                     btn.classList.remove('tab-inactive');
                     btn.classList.add('tab-active');
                 } else {
@@ -822,21 +833,13 @@
 
         function startQuiz() {
             let pool = [];
-            switch(currentMode) {
+            switch (currentMode) {
                 case 'all': pool = [...masterQuestions]; break;
                 case 'short': pool = masterQuestions.filter(q => q.type === 'short'); break;
                 case 'mcq': pool = masterQuestions.filter(q => q.type === 'mcq'); break;
-                case 'incorrect':
-                    if(incorrectQuestions.length === 0) {
-                        alert("오답 노트가 비어 있습니다. 전체 모의고사를 시작합니다.");
-                        setMode('all');
-                        return;
-                    }
-                    pool = masterQuestions.filter(q => incorrectQuestions.includes(q.id));
-                    break;
             }
 
-            if(pool.length === 0) return;
+            if (pool.length === 0) return;
 
             activeQuestions = shuffleArray(pool);
             currentIndex = 0;
@@ -846,7 +849,6 @@
             DOM.resultScreen.classList.add('hidden');
             DOM.quizScreen.classList.remove('hidden');
             
-            updateIncorrectBadge();
             renderQuestion();
         }
 
@@ -855,7 +857,7 @@
             DOM.feedbackCard.classList.add('hidden');
             DOM.feedbackCard.classList.remove('flex');
             DOM.submitBtn.classList.remove('hidden');
-            DOM.nextBtn.parentElement.classList.add('hidden');
+            DOM.nextBtnWrapper.classList.add('hidden');
             DOM.quizScreen.classList.remove('shake');
             
             const q = activeQuestions[currentIndex];
@@ -868,33 +870,49 @@
             DOM.inputArea.innerHTML = '';
             
             if (q.type === 'mcq') {
-                const shuffledOptions = shuffleArray([...q.options]);
+                const shuffledOptions = shuffleOptions(q);
                 const optsContainer = document.createElement('div');
-                optsContainer.className = "flex flex-col gap-3";
-                
+                optsContainer.className = 'flex flex-col gap-3.5';
+
                 shuffledOptions.forEach((opt, index) => {
                     const label = document.createElement('label');
-                    label.className = "flex items-center p-4 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition option-label";
-                    label.innerHTML = `
-                        <input type="radio" name="answer" value="${opt.replace(/"/g, '&quot;')}" class="hidden">
-                        <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold mr-4 flex-shrink-0 option-circle transition-colors">${index + 1}</div>
-                        <span class="text-slate-700 leading-relaxed font-medium text-[17px] transition-colors">${opt}</span>
-                    `;
-                    
+                    label.className = 'option-label flex items-center p-4 sm:p-5 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-50 transition select-none';
+
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = 'answer';
+                    radio.value = opt;
+                    radio.className = 'hidden';
+
+                    const circle = document.createElement('div');
+                    circle.className = 'w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 font-bold mr-4 flex-shrink-0 option-circle transition-colors';
+                    circle.textContent = index + 1;
+
+                    const textSpan = document.createElement('span');
+                    textSpan.className = 'text-slate-700 leading-relaxed font-medium text-[17px] transition-colors';
+                    textSpan.textContent = opt;
+
+                    label.appendChild(radio);
+                    label.appendChild(circle);
+                    label.appendChild(textSpan);
+
                     label.addEventListener('click', function() {
-                        if(isAnswerSubmitted) return;
+                        if (isAnswerSubmitted) return;
+                        radio.checked = true;
                         document.querySelectorAll('.option-label').forEach(l => {
                             l.classList.remove('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]');
-                            l.querySelector('.option-circle').classList.replace('bg-primary', 'bg-slate-100');
-                            l.querySelector('.option-circle').classList.replace('text-white', 'text-slate-500');
+                            const c = l.querySelector('.option-circle');
+                            c.classList.remove('bg-primary', 'text-white');
+                            c.classList.add('bg-slate-100', 'text-slate-500');
                         });
                         this.classList.add('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]');
-                        this.querySelector('.option-circle').classList.replace('bg-slate-100', 'bg-primary');
-                        this.querySelector('.option-circle').classList.replace('text-slate-500', 'text-white');
+                        circle.classList.remove('bg-slate-100', 'text-slate-500');
+                        circle.classList.add('bg-primary', 'text-white');
                     });
 
                     optsContainer.appendChild(label);
                 });
+
                 DOM.inputArea.appendChild(optsContainer);
             } else {
                 DOM.inputArea.innerHTML = `
@@ -903,11 +921,13 @@
                 `;
                 setTimeout(() => {
                     const inputEl = document.getElementById('short-answer-input');
+                    if (!inputEl) return;
                     inputEl.focus();
-                    inputEl.addEventListener('keypress', function(e) {
+                    inputEl.addEventListener('keydown', function(e) {
                         if (e.key === 'Enter') {
                             e.preventDefault();
-                            if(isAnswerSubmitted) nextQuestion();
+                            e.stopPropagation();
+                            if (isAnswerSubmitted) nextQuestion();
                             else submitAnswer();
                         }
                     });
@@ -917,12 +937,13 @@
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && isAnswerSubmitted && !DOM.quizScreen.classList.contains('hidden')) {
+                e.preventDefault();
                 nextQuestion();
             }
         });
 
         function submitAnswer() {
-            if(isAnswerSubmitted) return;
+            if (isAnswerSubmitted) return;
             const q = activeQuestions[currentIndex];
             let isCorrect = false;
             let userAnswer = '';
@@ -940,11 +961,14 @@
                 
                 document.querySelectorAll('input[name="answer"]').forEach(radio => {
                     const label = radio.closest('label');
+                    const circle = label.querySelector('.option-circle');
                     radio.disabled = true;
                     label.classList.remove('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]', 'hover:bg-slate-50');
                     label.classList.add('cursor-default');
+                    circle.classList.remove('bg-primary', 'text-white');
+                    circle.classList.add('bg-slate-100', 'text-slate-500');
                     
-                    if(radio.value === q.a) {
+                    if (radio.value === q.a) {
                         label.classList.add('selected');
                     } else if (radio.checked && !isCorrect) {
                         label.classList.add('wrong-selected');
@@ -954,7 +978,7 @@
             } else {
                 const inputEl = document.getElementById('short-answer-input');
                 userAnswer = inputEl.value.trim();
-                if(!userAnswer) {
+                if (!userAnswer) {
                     DOM.quizScreen.classList.remove('shake');
                     void DOM.quizScreen.offsetWidth;
                     DOM.quizScreen.classList.add('shake');
@@ -964,42 +988,30 @@
                 const normalizedUser = normalizeString(userAnswer);
                 isCorrect = q.accepted.some(acc => normalizeString(acc) === normalizedUser);
                 
-                if(isCorrect) {
-                    inputEl.classList.replace('border-slate-200', 'border-emerald-500');
-                    inputEl.classList.replace('focus:border-primary', 'focus:border-emerald-500');
-                    inputEl.classList.add('bg-emerald-50', 'text-emerald-900', 'font-bold');
+                if (isCorrect) {
+                    inputEl.classList.remove('border-slate-200', 'focus:border-primary');
+                    inputEl.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900', 'font-bold');
                 } else {
-                    inputEl.classList.replace('border-slate-200', 'border-rose-500');
-                    inputEl.classList.add('bg-rose-50', 'text-rose-900', 'font-bold');
+                    inputEl.classList.remove('border-slate-200', 'focus:border-primary');
+                    inputEl.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900', 'font-bold');
                 }
             }
 
             isAnswerSubmitted = true;
             DOM.submitBtn.classList.add('hidden');
-            DOM.nextBtn.parentElement.classList.remove('hidden');
+            DOM.nextBtnWrapper.classList.remove('hidden');
 
-            handleScoreAndStorage(q.id, isCorrect);
-            showFeedback(isCorrect, q);
-        }
-
-        function handleScoreAndStorage(qId, isCorrect) {
             if (isCorrect) {
                 score++;
-                incorrectQuestions = incorrectQuestions.filter(id => id !== qId);
-            } else {
-                if(!incorrectQuestions.includes(qId)) {
-                    incorrectQuestions.push(qId);
-                }
             }
-            localStorage.setItem('santaMethodsIncorrect', JSON.stringify(incorrectQuestions));
-            updateIncorrectBadge();
+            showFeedback(isCorrect, q);
         }
 
         function showFeedback(isCorrect, q) {
             DOM.feedbackCard.classList.remove('hidden');
             DOM.feedbackCard.classList.add('flex');
             
-            if(isCorrect) {
+            if (isCorrect) {
                 DOM.resultBanner.className = "p-5 rounded-xl font-bold text-lg flex items-center shadow-sm bg-[#F0FDF4] text-[#15803D] border border-[#DCFCE7]";
                 DOM.resultIcon.innerHTML = "🎉";
                 DOM.resultMessage.innerHTML = `정답입니다! 공식 정답은 <span class="mx-1 px-2 py-0.5 bg-[#BBF7D0] rounded">[ ${q.a} ]</span> 입니다.`;
@@ -1035,8 +1047,6 @@
             document.getElementById('res-total').textContent = activeQuestions.length;
             document.getElementById('res-correct').textContent = score;
         }
-
-        updateIncorrectBadge();
     </script>
 </body>
 </html>
