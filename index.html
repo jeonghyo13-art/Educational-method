@@ -3,21 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>교육방법 및 공학 마스터 (2026 에듀테크 트렌드)</title>
+    <title>임용고시 교육학 마스터: 교육방법 편</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+                    colors: { primary: '#5A4EE5' }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-        .glass-panel { background: #ffffff; border-radius: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01); border: 1px solid #f1f5f9; }
+        body { background-color: #f8fafc; color: #1e293b; }
+        .glass-panel { background: #ffffff; border-radius: 1.5rem; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); border: 1px solid #f1f5f9; }
         .fade-in { animation: fadeIn 0.3s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .shake { animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both; }
         @keyframes shake { 10%, 90% { transform: translate3d(-1px, 0, 0); } 20%, 80% { transform: translate3d(2px, 0, 0); } 30%, 50%, 70% { transform: translate3d(-4px, 0, 0); } 40%, 60% { transform: translate3d(4px, 0, 0); } }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
         
         /* Custom Radio Selection Styles */
         .option-label.selected { background-color: #f0fdf4; border-color: #22c55e; }
@@ -27,38 +33,41 @@
         .option-label.wrong-selected { background-color: #fff1f2; border-color: #f43f5e; }
         .option-label.wrong-selected .option-circle { background-color: #f43f5e; color: #ffffff; }
         .option-label.wrong-selected span { color: #9f1239; font-weight: 600; }
+
+        .tab-active { background-color: #5A4EE5; color: white; border-color: #5A4EE5; }
+        .tab-inactive { background-color: transparent; color: #475569; border-color: transparent; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col font-sans">
 
-    <header class="bg-transparent pt-10 pb-6">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-3xl sm:text-4xl font-extrabold text-indigo-900 mb-3 tracking-tight">SANTA 파이널: 교육방법 및 공학 (2026 트렌드 완벽대비)</h1>
-            <p class="text-slate-500 mb-8 font-medium">전 범위 핵심 개념 인출 퀴즈 (무작위 셔플 & 오답노트 & 논술 모범 문장 제공)</p>
+    <header class="bg-transparent pt-12 pb-8">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <h1 class="text-3xl sm:text-4xl font-extrabold text-[#201D56] mb-3 tracking-tight">임용고시 교육학 마스터: 교육방법 및 공학 편</h1>
+            <p class="text-[#6B7280] mb-8 font-medium">전 범위 핵심 개념 인출 퀴즈 (무작위 셔플 & 오답노트 & 논술 모범 문장 제공)</p>
             
-            <nav class="flex justify-center flex-wrap gap-2 sm:gap-6" id="main-tabs">
-                <button onclick="setMode('all')" class="tab-btn px-6 py-2.5 rounded-full font-bold bg-indigo-600 text-white shadow-md transition" data-mode="all">전체 모의고사</button>
-                <button onclick="setMode('short')" class="tab-btn px-6 py-2.5 rounded-full font-bold text-slate-500 hover:bg-slate-100 transition" data-mode="short">단답형 집중</button>
-                <button onclick="setMode('mcq')" class="tab-btn px-6 py-2.5 rounded-full font-bold text-slate-500 hover:bg-slate-100 transition" data-mode="mcq">객관식 집중</button>
-                <button onclick="setMode('incorrect')" class="tab-btn px-6 py-2.5 rounded-full font-bold text-slate-500 hover:bg-slate-100 transition relative" data-mode="incorrect">
+            <nav class="flex justify-center flex-wrap gap-2" id="main-tabs">
+                <button onclick="setMode('all')" class="tab-btn tab-active px-6 py-2.5 rounded-xl font-bold transition" data-mode="all">전체 모의고사</button>
+                <button onclick="setMode('short')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition" data-mode="short">단답형 집중</button>
+                <button onclick="setMode('mcq')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition" data-mode="mcq">객관식 집중</button>
+                <button onclick="setMode('incorrect')" class="tab-btn tab-inactive px-6 py-2.5 rounded-xl font-bold hover:bg-slate-100 transition relative" data-mode="incorrect">
                     오답 노트 
-                    <span id="incorrect-badge" class="absolute -top-1 -right-2 bg-pink-500 text-white text-xs px-2 py-0.5 rounded-full hidden shadow">0</span>
+                    <span id="incorrect-badge" class="absolute -top-2 -right-2 bg-[#EF4444] text-white text-[11px] px-2 py-0.5 rounded-full hidden shadow-sm font-bold">0</span>
                 </button>
             </nav>
         </div>
     </header>
 
-    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 pb-16 w-full">
         
-        <div id="start-screen" class="glass-panel p-10 text-center mx-auto mt-6 fade-in">
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 text-indigo-600 rounded-full mb-6">
+        <div id="start-screen" class="glass-panel p-10 text-center mx-auto mt-2 fade-in">
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-[#EEEDFC] text-primary rounded-full mb-6">
                 <i class="fa-solid fa-graduation-cap text-4xl"></i>
             </div>
             <h2 class="text-2xl font-bold text-slate-800 mb-4">학습을 시작할 준비가 되셨나요?</h2>
             <p class="text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto">
                 이 모의고사는 2026년 최신 교육 트렌드와 전통적 핵심 이론을 모두 반영하고 있습니다. 실제 시험과 동일한 감각으로 훈련해 보세요.
             </p>
-            <button onclick="startQuiz()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-10 rounded-xl transition shadow-lg text-lg w-full sm:w-auto">
+            <button onclick="startQuiz()" class="bg-primary hover:bg-[#4a3fcc] text-white font-bold py-4 px-10 rounded-xl transition shadow-lg text-lg w-full sm:w-auto">
                 <i class="fa-solid fa-play mr-2"></i> 실전 훈련 시작하기
             </button>
         </div>
@@ -66,76 +75,73 @@
         <div id="quiz-screen" class="hidden mx-auto fade-in">
             <div class="glass-panel p-6 sm:p-10 mb-6">
                 
-                <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
-                    <span id="q-type" class="bg-indigo-50 text-indigo-600 text-sm font-bold px-4 py-1.5 rounded-full">단답형/기입형</span>
+                <div class="flex justify-between items-center mb-8 pb-4">
+                    <span id="q-type" class="bg-[#EEEDFC] text-primary text-[13px] font-bold px-4 py-1.5 rounded-full">단답형/기입형</span>
                     <div class="text-slate-500 text-sm font-medium">
-                        <span id="q-topic" class="mr-2">주제</span>
-                        <span id="progress-text" class="font-bold text-indigo-900 text-lg">1 / 60</span>
+                        <span id="q-topic" class="mr-3">주제</span>
+                        <span id="progress-text" class="font-bold text-[#201D56] text-lg">1 / 70</span>
                     </div>
                 </div>
                 
-                <h3 id="question-text" class="text-xl sm:text-2xl font-bold text-slate-800 mb-8 leading-relaxed whitespace-pre-wrap"></h3>
+                <h3 id="question-text" class="text-[22px] sm:text-2xl font-bold text-slate-800 mb-8 leading-relaxed whitespace-pre-wrap word-break-keep-all"></h3>
                 
                 <div id="input-area" class="w-full mb-8"></div>
                 
                 <div class="w-full">
-                    <button id="submit-btn" onclick="submitAnswer()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition shadow-md w-full text-lg">
+                    <button id="submit-btn" onclick="submitAnswer()" class="bg-primary hover:bg-[#4a3fcc] text-white font-bold py-4 px-8 rounded-xl transition shadow-md w-full text-lg">
                         정답 확인
                     </button>
                 </div>
             </div>
 
-            <!-- 해설 및 피드백 영역 분리 -->
-            <div id="feedback-card" class="hidden flex-col gap-4 mb-10 fade-in">
+            <div id="feedback-card" class="hidden flex-col gap-5 mb-10 fade-in">
                 
-                <!-- 정답 결과 배너 -->
-                <div id="result-banner" class="p-5 rounded-xl font-bold text-lg flex items-center shadow-sm">
+                <div id="result-banner" class="p-5 rounded-xl font-bold text-[17px] flex items-center shadow-sm">
                     <span id="result-icon" class="mr-3 text-2xl"></span>
                     <span id="result-message"></span>
                 </div>
                 
-                <!-- 개념 해설 -->
                 <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
-                    <h5 class="text-sm font-bold text-slate-500 mb-3"><i class="fa-solid fa-book-open mr-2"></i>개념 해설</h5>
+                    <h5 class="text-[13px] font-bold text-slate-500 mb-3"><i class="fa-solid fa-book-open mr-2"></i>개념 해설</h5>
                     <p id="explanation-text" class="text-slate-700 text-[15px] leading-relaxed whitespace-pre-wrap"></p>
                 </div>
                 
-                <!-- 암기 키워드 -->
-                <div class="bg-[#f8fafc] border border-blue-100 rounded-xl p-6 shadow-sm">
-                    <h5 class="text-sm font-bold text-blue-500 mb-3"><i class="fa-solid fa-key mr-2 text-amber-400"></i>암기 키워드 & 두문자</h5>
-                    <p id="mnemonic-text" class="text-indigo-900 font-bold text-[15px] leading-relaxed"></p>
+                <div class="bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-6 shadow-sm">
+                    <h5 class="text-[13px] font-bold text-[#3B82F6] mb-3"><i class="fa-solid fa-key mr-2 text-amber-400"></i>암기 키워드 & 두문자</h5>
+                    <p id="mnemonic-text" class="text-[#1E3A8A] font-bold text-[15px] leading-relaxed"></p>
                 </div>
                 
-                <!-- 실전 논술 -->
-                <div class="bg-orange-50/50 border border-orange-100 rounded-xl p-6 shadow-sm">
-                    <h5 class="text-sm font-bold text-orange-500 mb-3"><i class="fa-solid fa-pen-nib mr-2"></i>실전 논술 (2026 트렌드 연계)</h5>
-                    <p id="essay-tip-text" class="text-orange-900 font-medium text-[15px] leading-relaxed"></p>
+                <div class="bg-[#FFF7ED] border border-[#FFEDD5] rounded-xl p-6 shadow-sm">
+                    <h5 class="text-[13px] font-bold text-[#EA580C] mb-3"><i class="fa-solid fa-pen-nib mr-2 text-[#EA580C]"></i>실전 논술 (2026 트렌드 연계)</h5>
+                    <p id="essay-tip-text" class="text-[#9A3412] font-medium text-[15px] leading-relaxed"></p>
                 </div>
 
-                <div class="mt-4">
-                    <button id="next-btn" onclick="nextQuestion()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-4 px-8 rounded-xl transition shadow-md w-full text-lg">
+                <div class="mt-2">
+                    <button id="next-btn" onclick="nextQuestion()" class="bg-primary hover:bg-[#4a3fcc] text-white font-bold py-4 px-8 rounded-xl transition shadow-md w-full text-lg">
                         다음 문제로 이동 (Enter ↵)
                     </button>
                 </div>
             </div>
         </div>
 
-        <div id="result-screen" class="hidden glass-panel p-10 text-center mx-auto mt-6 fade-in border-t-4 border-t-indigo-500">
-                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-                    <p class="text-sm text-slate-500 mb-1">총 문항</p>
-                    <p class="text-3xl font-bold text-slate-800" id="res-total">0</p>
+        <div id="result-screen" class="hidden glass-panel p-10 text-center mx-auto mt-6 fade-in border-t-4 border-t-primary">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6">모의고사 완료!</h2>
+            <div class="flex justify-center gap-6 mb-10">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 w-32">
+                    <p class="text-sm text-slate-500 mb-2">총 문항</p>
+                    <p class="text-4xl font-extrabold text-slate-800" id="res-total">0</p>
                 </div>
-                <div class="bg-blue-50 p-4 rounded-xl border border-blue-200">
-                    <p class="text-sm text-blue-600 mb-1">정답 수</p>
-                    <p class="text-3xl font-bold text-blue-700" id="res-correct">0</p>
+                <div class="bg-[#EEEDFC] p-6 rounded-2xl border border-[#D9D6FE] w-32">
+                    <p class="text-sm text-primary mb-2">정답 수</p>
+                    <p class="text-4xl font-extrabold text-primary" id="res-correct">0</p>
                 </div>
             </div>
             
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <button onclick="startQuiz()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 px-6 rounded-xl transition shadow-md">
+                <button onclick="startQuiz()" class="bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold py-3.5 px-8 rounded-xl transition shadow-md">
                     <i class="fa-solid fa-rotate-right mr-2"></i> 다시 풀기 (셔플)
                 </button>
-                <button onclick="setMode('incorrect')" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-3.5 px-6 rounded-xl border border-rose-200 transition shadow-md">
+                <button onclick="setMode('incorrect')" class="bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold py-3.5 px-8 rounded-xl border border-rose-200 transition shadow-md">
                     <i class="fa-solid fa-book-journal-whills mr-2"></i> 오답 노트 복습
                 </button>
             </div>
@@ -144,105 +150,9 @@
     </main>
 
     <script>
-        // 2026년 교육 현안 및 전통적 필수 핵심 개념을 망라한 65문항 마스터 문제 은행
         const masterQuestions = [
-            // --- 1. 최신 에듀테크 & 트렌드 ---
             {
-                id: 101, topic: "AI 디지털 교과서", type: "mcq",
-                q: "2026년 본격 도입되는 AI 디지털 교과서와 기존 서책형 교과서의 차이점으로 가장 거리가 먼 것은?",
-                options: [
-                    "AI 교과서는 학생의 학습 진도, 성취 수준, 학습 특성 등 방대한 데이터를 실시간으로 수집하고 분석한다.",
-                    "서책형 교과서는 지식 전달 위주의 단방향 학습을 이끌지만, AI 교과서는 교사-학생-컴퓨터 간 다방향 학습을 촉진한다.",
-                    "AI 교과서는 교과 간 서로 단절된 개별 학습을 심화시켜 특정 과목에 대한 전문성을 극도로 높이는 데 주력한다.",
-                    "서책형 교과서는 자료가 고정되어 변환이 어렵지만, AI 교과서는 새로운 사실과 지식을 신속하게 반영(업데이트)할 수 있다."
-                ],
-                a: "AI 교과서는 교과 간 서로 단절된 개별 학습을 심화시켜 특정 과목에 대한 전문성을 극도로 높이는 데 주력한다.",
-                exp: "AI 디지털 교과서는 오히려 교과 내/교과 간 연계 학습을 강화하고 하이퍼링크 및 다양한 DB와의 연계를 통해 융합적 사고력을 높이는 방향으로 활용됩니다.",
-                tip: "교사는 AI 디지털 교과서의 '학습 데이터 분석 기능'을 활용하여 학생 개개인의 성취 수준을 실시간으로 진단하고, 이에 기반한 맞춤형 처방을 제공함으로써 개별화 교육을 실현해야 한다.",
-                m: "AI 디지털 교과서 = 맞춤형 진단 + 다방향 연계 + 지속적 업데이트"
-            },
-            {
-                id: 102, topic: "인공지능 기반 교육", type: "short",
-                q: "AI 챗봇(예: 챗GPT)을 활용한 교육은 언제 어디서나 개별 맞춤 학습과 언어 학습 지원이 가능하다는 장점이 있다. 그러나 기계에 대한 지나친 의존성 문제와 함께, 인간 대 인간의 정서적 교감이나 공감이 결여될 수 있다는 한계를 지닌다. 이러한 한계를 보완하기 위해 블렌디드 러닝 등을 통해 강화해야 하는 것은 '사회적 OOOO'이다. 4글자는?",
-                accepted: ["상호작용"],
-                a: "상호작용",
-                exp: "인공지능 교육의 가장 큰 단점은 사람 간의 정서적, 사회적 상호작용이 부족하다는 것입니다. 따라서 오프라인에서 교사와 동료 학습자 간의 면대면 상호작용이 필수적으로 병행되어야 합니다.",
-                tip: "AI 튜터가 지식의 전달과 반복 학습을 담당하더라도, 교사는 오프라인 교실에서 토론과 협동학습을 주도하며 기계가 대체할 수 없는 '사회적 상호작용'과 정서적 교감을 강화해야 한다.",
-                m: "AI 한계 = 사회적 상호작용 부족"
-            },
-            {
-                id: 103, topic: "디지털 리터러시", type: "mcq",
-                q: "2022 개정 교육과정에서 매우 강조하는 '디지털 리터러시(지식정보처리역량)' 함양을 위한 교육적 접근으로 적절하지 않은 것은?",
-                options: [
-                    "컴퓨터를 통해 찾아낸 정보의 진위를 비판적으로 분석하고 평가하는 훈련을 강화한다.",
-                    "정보 교과 시간에 한정하여 도구(SW) 사용법 위주로 집중 교육하고, 타 교과와는 분리하여 가르친다.",
-                    "다양한 출처의 정보를 조합하여 자신의 목적에 맞는 새로운 정보와 산출물을 창조하도록 유도한다.",
-                    "교사들의 디지털 수업 설계 지원을 위한 관련 전문 인력(코디네이터) 및 자원 관리 체제를 구축한다."
-                ],
-                a: "정보 교과 시간에 한정하여 도구(SW) 사용법 위주로 집중 교육하고, 타 교과와는 분리하여 가르친다.",
-                exp: "디지털 리터러시는 단순한 기기 조작(도구 사용법)을 넘어 교과, 비교과, 평생교육 등 광범위한 영역에 통합적으로 적용되어야 하는 핵심 역량입니다.",
-                tip: "학생들이 정보의 바다에서 가짜 뉴스를 분별하고 유의미한 지식을 생산해 내도록, 교사는 모든 교과 수업에 '디지털 리터러시(지식정보처리역량)' 교육을 융합하여 비판적 사고력을 길러주어야 한다.",
-                m: "디지털 리터러시 = 비판적 수용 + 창조적 생산 (범교과적 역량)"
-            },
-            {
-                id: 104, topic: "마이크로러닝", type: "short",
-                q: "학생들의 집중력 유지 시간이 짧아지는 최근 트렌드를 반영하여, 1~2가지의 핵심 개념만을 담아 2~7분 내외로 짧게 소비할 수 있도록 쪼개어 만든 동영상 등의 학습 콘텐츠를 활용하는 교육 방법을 무엇이라고 하는가? (6글자)",
-                accepted: ["마이크로러닝", "microlearning"],
-                a: "마이크로러닝 (Micro-learning)",
-                exp: "마이크로러닝은 짧고 굵은(bite-sized) 콘텐츠를 제공하여 인지부하를 줄이고 시공간의 제약 없이 모바일 기기 등을 통해 자기주도적으로 학습하게 하는 방식입니다.",
-                tip: "플립러닝을 위한 사전 학습 영상 제작 시, 교사는 40분짜리 긴 강의보다는 핵심 개념을 분절화한 '마이크로러닝' 형태의 짧은 영상을 제공하여 학생들의 인지적 과부하를 막고 학습 동기를 높여야 한다.",
-                m: "2~7분 짧은 핵심 콘텐츠 = 마이크로러닝"
-            },
-            {
-                id: 105, topic: "실감미디어", type: "short",
-                q: "우주 탐사나 역사적 현장 체험처럼 물리적으로 접근이 불가능하거나 위험한 상황을 교실에서 안전하게 체험할 수 있도록, 가상현실(VR)이나 증강현실(AR)을 활용하여 사용자의 실재감과 몰입감을 최대로 높이는 기술을 통칭하여 'OO 미디어'라고 한다. 빈칸은?",
-                accepted: ["실감", "실감형"],
-                a: "실감 미디어",
-                exp: "실감미디어는 학습자에게 높은 현장감(실재감)을 주어 오감을 통한 체험 중심 학습을 가능하게 합니다.",
-                tip: "위험하거나 접근이 어려운 과학 원리를 가르칠 때, 교사는 VR/AR 등 '실감 미디어'를 활용하여 학습자의 몰입감을 높여야 한다.",
-                m: "VR, AR, 실재감 = 실감미디어"
-            },
-            {
-                id: 106, topic: "거꾸로 학습(Flipped Learning)", type: "mcq",
-                q: "거꾸로 학습(플립러닝) 도입 시 교사의 역할 및 설계 고려사항으로 가장 거리가 먼 것은?",
-                options: [
-                    "오프라인 교실 수업 시간을 교사의 주입식 강의가 아닌 고차원적 문제해결과 토론 시간으로 전환한다.",
-                    "학생들이 온라인 사전 학습을 해오지 않을 것에 대비하여, 교실 수업 도입부에서 20분 이상 사전 학습 내용을 다시 처음부터 끝까지 재강의한다.",
-                    "교육학적 소양뿐만 아니라 테크놀로지 활용에 대한 전문성을 갖추어야 한다.",
-                    "학생들이 영상을 집에서 시청하는 시간을 단순히 숙제 시간이 아니라 의미 있는 사전 지식 습득의 시간으로 유연하게 설계한다."
-                ],
-                a: "학생들이 온라인 사전 학습을 해오지 않을 것에 대비하여, 교실 수업 도입부에서 20분 이상 사전 학습 내용을 다시 처음부터 끝까지 재강의한다.",
-                exp: "사전 학습을 해오지 않았다고 해서 전체 재강의를 하면 거꾸로 학습의 의미가 퇴색됩니다. 짧은 퀴즈나 동료 티칭 등 별도의 안전망을 설계해야 합니다.",
-                tip: "단순 지식 암기는 영상에 맡기고, 대면 수업에서는 고차원적 문제해결과 협동학습에 온전히 시간을 투자해야 한다.",
-                m: "교실 밖(지식습득) -> 교실 안(문제해결)"
-            },
-            {
-                id: 107, topic: "블렌디드 러닝", type: "short",
-                q: "온라인 학습이 가지는 시공간 초월의 장점과, 오프라인 교실 학습이 가지는 면대면 상호작용 및 정서적 교감의 장점을 결합하여 학습 효과를 극대화하는 혼합형 수업 형태를 영어(한글표기) 6글자로 쓰시오.",
-                accepted: ["블렌디드러닝", "블렌디드 러닝", "blendedlearning"],
-                a: "블렌디드 러닝 (Blended Learning)",
-                exp: "온/오프라인의 단순 결합을 넘어 AI 코스웨어와 교실 수업을 결합하는 하이터치 하이테크 개념으로 확장되고 있습니다.",
-                tip: "AI 기반의 온라인 개별 진단과 교사의 오프라인 정서적 멘토링을 유기적으로 결합하는 '블렌디드 러닝'을 적극 활용해야 한다.",
-                m: "온라인 + 오프라인 = 블렌디드 러닝"
-            },
-            {
-                id: 108, topic: "CSCL (컴퓨터 기반 협력학습)", type: "mcq",
-                q: "CSCL 환경에서 교사가 학습자들의 문제 해결을 위해 지원해야 하는 도구와 기능의 연결이 틀린 것은?",
-                options: [
-                    "시각화 도구: 학습자가 수집한 정보나 아이디어를 마인드맵 형태로 나타낼 수 있게 지원",
-                    "수행지원 도구: 낮은 수준의 기계적이고 단순한 반복 과제를 대체하여 인지적 부담 경감",
-                    "협업 도구: 학습자들이 클라우드 컴퓨팅 등을 통해 실시간으로 문서를 공동 편집하는 공간 제공",
-                    "정적 정보: 원격지 학습자 간의 음성 및 화상 소통을 원활하게 연결해 주는 커뮤니케이션 도구"
-                ],
-                a: "정적 정보: 원격지 학습자 간의 음성 및 화상 소통을 원활하게 연결해 주는 커뮤니케이션 도구",
-                exp: "원격 소통 지원 도구는 '의사소통 도구'입니다. '정적 정보'는 지식을 표현하는 텍스트나 DB를 말합니다.",
-                tip: "CSCL 설계 시 클라우드 '협업 도구'와 단순 작업을 덜어주는 '수행지원 도구'를 제공하여 본질적 문제 해결에 집중하게 해야 한다.",
-                m: "CSCL 도구 = 시각화, 수행지원, 의사소통, 협업"
-            },
-
-            // --- 2. 교육학 일반 핵심 (철학/통신/목표진술) ---
-            {
-                id: 109, topic: "구성주의 지식관", type: "mcq",
+                id: 1, topic: "구성주의 지식관", type: "mcq",
                 q: "객관주의(행동주의/인지주의)와 대비되는 구성주의 교육관에 대한 설명으로 옳은 것은?",
                 options: [
                     "지식은 절대적이고 불변하며 객관적으로 존재하는 것이다.",
@@ -251,687 +161,602 @@
                     "학습 과제는 단순화되고 탈맥락화된 형태로 제시되어야 이해가 빠르다."
                 ],
                 a: "지식은 주관적이고 유동적이며 개인의 경험을 통해 능동적으로 재구성된다.",
-                exp: "구성주의에서 지식은 학습자의 경험에 의해 주관적으로 의미가 부여되고 구성되는 것입니다. 탈맥락화가 아닌 '실제적 맥락'을 강조합니다.",
+                exp: "구성주의에서 지식은 학습자의 경험에 의해 주관적으로 의미가 부여되고 구성되는 것입니다. 지식은 유동적이며 개인에 의해 계속적으로 재구성된다고 봅니다. 반면, 탈맥락화된 지식은 객관주의의 특징입니다.",
                 tip: "교사는 지식을 일방적으로 주입하기보다, 학생들이 실생활 맥락 속에서 스스로 의미를 구성해 나가도록 안내자이자 촉진자 역할을 해야 한다.",
-                m: "구성주의 = 주관적, 맥락적 지식 구성"
+                m: "구성주의 = 주관적, 유동적, 맥락적 지식 구성"
             },
             {
-                id: 110, topic: "사회적 구성주의", type: "short",
-                q: "비고츠키(Vygotsky)의 사회적 구성주의에 따르면, 지식의 구성은 개인의 인지과정뿐만 아니라 동료 및 교사와의 사회적 상호작용을 통해 촉진된다. 교사는 학생의 발달단계에 맞춰 적절한 도움인 'OOO(Scaffolding)'을 제공해야 한다. 3글자는?",
-                accepted: ["스캐폴딩", "발판적", "비계대", "비계망", "비계틀"], // '비계설정'도 맞으나 3글자 요구
-                a: "스캐폴딩 (비계틀 등)",
-                exp: "ZPD(근접발달영역) 내에서 학습자가 스스로 문제를 해결할 수 있도록 돕는 발판(비계)을 의미합니다.",
-                tip: "교사는 협동학습 과정에서 학생들 간의 활발한 상호작용을 유도하고, 막힌 부분에서는 적절한 '스캐폴딩'을 제공하여 인지 발달을 촉진해야 한다.",
-                m: "비고츠키 = 사회적 상호작용 + 스캐폴딩"
+                id: 2, topic: "인지적/사회적 구성주의", type: "short",
+                q: "피아제(Piaget)의 이론에 근거하여 지식 구성이 개인의 정신적 활동(동화와 조절)을 통해 이루어진다고 보는 인지적 구성주의와 달리, 비고츠키(Vygotsky)의 이론에 근거하여 사회적 상호작용을 통한 지식의 내면화를 강조하는 구성주의는 무엇인가? (O O O 구성주의)",
+                accepted: ["사회적", "사회적구성주의", "사회적 구성주의"],
+                a: "사회적 구성주의",
+                exp: "비고츠키의 사회적 구성주의는 학습이 사회적으로 맥락화된 지식을 학습자가 내면화하는 과정이라고 보며, 동료나 주변 인물들과의 상호작용 및 스캐폴딩(비계)을 강조합니다.",
+                tip: "학생들의 능동적인 지식 구성을 위해, 교사는 개인의 인지적 발달뿐만 아니라 동료 학습자와의 활발한 상호작용(사회적 구성주의)을 촉진하는 협동학습 환경을 조성해야 한다.",
+                m: "피아제 = 인지적 (개인) / 비고츠키 = 사회적 (상호작용, 스캐폴딩)"
             },
             {
-                id: 111, topic: "벌로(Berlo)의 SMCR 모형", type: "short",
-                q: "벌로의 통신모형 중 통신방법(Channel, C) 요소는 인간의 5감을 활용한다. 한편 메시지(M)를 구성하는 하위 요소에는 전달내용(Content), 요소(Element), 조직하는 방식인 구조(Structure), 그리고 언어적/비언어적으로 구분되는 OOO(Code), 내용을 전달하는 연극 등의 방식인 처리(Treatment)가 있다. OOO에 들어갈 3글자는?",
-                accepted: ["기호화", "코드(C", "코드(c", "기호(C", "코드화"],
-                a: "코드화 (혹은 기호화/코드)",
-                exp: "메시지(Message)의 요소는 내용, 요소, 구조, 코드(기호), 처리입니다.",
-                tip: "수업을 설계할 때 교사는 메시지가 학생에게 잘 전달되도록 언어적 기호뿐만 아니라 시각자료 등 비언어적 '코드'와 적절한 '처리' 방식을 신중히 선택해야 한다.",
-                m: "메시지 하위 = 내/요/구/코/처"
-            },
-            {
-                id: 112, topic: "섀넌과 슈람의 모형", type: "short",
-                q: "섀넌과 슈람의 통신 모형에서, 교사(송신자)와 학생(수신자) 간의 의사소통 효과를 높이기 위해서는 양측의 '이것'이 서로 교집합을 이루며 확대되어야 한다고 보았다. 통신기술, 태도, 지식수준, 사회체계, 문화양식 등에 영향을 받는 '이것'(4글자)은 무엇인가?",
-                accepted: ["경험의장", "경험의 장"],
-                a: "경험의 장",
-                exp: "교사와 학생의 '경험의 장'이 중복될수록 메시지의 전달이 정확해집니다. 피드백을 통해 이를 확대할 수 있습니다.",
-                tip: "학생의 선개념이나 흥미를 고려하여 교사와 학생 간의 '경험의 장'을 확대하고, 지속적인 피드백을 통해 수업 중 발생하는 잡음을 줄여야 한다.",
-                m: "슈람 = 경험의 장 교집합, 잡음, 피드백"
-            },
-            {
-                id: 113, topic: "메이거(Mager)의 목표 진술", type: "mcq",
-                q: "메이거의 행동적 수업목표 진술 요건(조건, 준거, 도착점 행동)이 모두 가장 잘 포함된 것은?",
+                id: 3, topic: "통신과정 모형(SMCR)", type: "mcq",
+                q: "벌로(Berlo)의 SMCR 모형에서 '통신기술, 태도, 지식수준, 사회체계, 문화양식'에 의해 공통적으로 영향을 받는 두 가지 요소로 바르게 짝지어진 것은?",
                 options: [
-                    "학생은 한국사 교과서를 읽고 조선의 건국 과정을 깊이 이해할 수 있다.",
-                    "학생은 10개의 영단어가 주어졌을 때, 사전 없이 8개 이상의 단어 뜻을 정확히 쓸 수 있다.",
-                    "학생은 체육 시간에 배구를 연습하여 훌륭한 스파이크를 칠 수 있다.",
-                    "학생은 조별 토론을 마친 후 민주주의의 가치를 내면화한다."
+                    "송신자(Sender)와 메시지(Message)",
+                    "송신자(Sender)와 수신자(Receiver)",
+                    "메시지(Message)와 통신방법(Channel)",
+                    "통신방법(Channel)과 수신자(Receiver)"
                 ],
-                a: "학생은 10개의 영단어가 주어졌을 때, 사전 없이 8개 이상의 단어 뜻을 정확히 쓸 수 있다.",
-                exp: "조건(10개 영단어, 사전 없이), 준거(8개 이상 정확히), 도착점 행동(쓸 수 있다)이 모두 명확히 관찰 가능한 형태로 진술되었습니다. '이해한다, 내면화한다'는 명시적 동사가 아닙니다.",
-                tip: "수업목표를 진술할 때 교사는 학생이 달성해야 할 성취 수준을 명확히 하기 위해 '도착점 행동, 조건, 준거'를 포함하여 행동적 용어로 구체화해야 한다.",
-                m: "메이거 = 조건 + 준거 + 도착점 행동"
-            },
-
-            // --- 3. 교수설계 모형 (ADDIE, 딕앤캐리 등) ---
-            {
-                id: 114, topic: "ADDIE 모형 - 분석", type: "short",
-                q: "ADDIE 모형의 분석(Analysis) 단계에서 최종 학습목표를 도출하기 위해, '학습자가 현재 지니고 있는 실제 수행 수준'과 '도달해야 할 이상적인 목표 수준' 간의 격차(Gap)를 확인하는 분석을 OOOO(4글자)이라고 한다.",
-                accepted: ["요구분석"],
-                a: "요구분석",
-                exp: "요구분석을 통해 교육이 필요한 진짜 문제를 규명하고 교육 목적을 설정합니다.",
-                tip: "프로그램 개발 전 '요구분석'을 실시하여 학생들의 현재 수준과 기대 수준 간의 격차를 정확히 진단하고, 이를 메울 수 있는 학습 목표를 설정해야 한다.",
-                m: "분석 1단계 = 요구(격차) 분석"
+                a: "송신자(Sender)와 수신자(Receiver)",
+                exp: "벌로의 모형에 따르면 메시지를 전달하는 송신자(교사)와 이를 받아들이는 수신자(학생)는 모두 통신기술, 태도, 지식수준, 사회체제, 문화양식의 영향을 받습니다. 이들의 유사성이 높을수록 통신(수업)이 효과적입니다.",
+                tip: "교사는 자신과 학생의 지식수준 및 문화양식의 차이를 이해하고, 이를 좁히기 위해 학생의 '경험의 장'에 맞는 적절한 메시지 코드와 통신방법을 선택해야 한다.",
+                m: "S(송신자)와 R(수신자)는 동일한 5가지 영향(통,태,지,사,문)을 받음"
             },
             {
-                id: 115, topic: "학습과제분석", type: "mcq",
-                q: "수업분석(과제분석)의 기법 중, 학습과제 내용이 순서 및 절차로 이루어지는 '운동기능'이나 '수학 문제 풀이 순서' 등을 분석할 때 가장 적합한 분석 방법은?",
+                id: 4, topic: "섀넌과 슈람 통신모형", type: "short",
+                q: "섀넌과 슈람(Shannon & Schramm)의 통신모형에서 송신자가 의도한 메시지가 수신자에게 다르게 전달되게 만드는 물리적, 심리적 방해요소를 무엇이라고 하는가? (2글자)",
+                accepted: ["잡음", "노이즈"],
+                a: "잡음",
+                exp: "의사소통 과정에 개입하여 메시지의 정확한 전달을 방해하는 요소를 '잡음(Noise)'이라고 합니다. 송신자와 수신자의 경험의 장이 겹치는 부분이 많을수록, 피드백이 활발할수록 잡음의 영향을 줄일 수 있습니다.",
+                tip: "수업 중 발생할 수 있는 심리적, 환경적 '잡음'을 최소화하기 위해 교사는 학생의 반응을 살피고 즉각적인 피드백을 주고받아야 한다.",
+                m: "통신 방해요소 = 잡음 / 해결책 = 경험의 장 확대, 피드백"
+            },
+            {
+                id: 5, topic: "블룸 신교육목표분류학", type: "mcq",
+                q: "2001년 개정된 블룸(Bloom)의 신교육목표분류학에 대한 설명으로 틀린 것은?",
                 options: [
-                    "군집 분석",
-                    "위계 분석",
-                    "절차 분석",
-                    "통합 분석"
+                    "인지과정 차원을 명사형이 아닌 동사형으로 제시하였다.",
+                    "기존의 '지식' 영역을 인지과정에서 분리하여 독립된 '지식 차원'으로 신설하였다.",
+                    "가장 복잡한 고차원적 인지과정으로 '평가하다'를 최상위에 두었다.",
+                    "지식 차원은 사실적, 개념적, 절차적, 메타인지 지식으로 세분화되었다."
                 ],
-                a: "절차 분석",
-                exp: "순서나 단계가 있는 운동기능이나 인지적 절차는 '절차분석'을 사용합니다. 언어정보는 군집, 지적기능은 위계분석을 씁니다.",
-                tip: "과학 실험 절차나 체육 실기 동작을 가르칠 때는 '절차분석'을 통해 과제를 세분화하고, 단계별로 명확하게 스캐폴딩을 제공해야 한다.",
-                m: "지/위(지적-위계), 언/군(언어-군집), 운/절(운동-절차)"
+                a: "가장 복잡한 고차원적 인지과정으로 '평가하다'를 최상위에 두었다.",
+                exp: "신교육목표분류학에서는 기존의 '종합'과 '평가'의 위계를 바꾸어, 가장 고차원적인 인지과정을 '창안하다(Create)'로 변경하여 최상위에 두었습니다.",
+                tip: "단순한 사실적 지식의 암기를 넘어, 학생 스스로 지식을 종합하여 새로운 아이디어를 '창안(Create)'할 수 있도록 고차원적 사고를 요구하는 평가를 설계해야 한다.",
+                m: "신블룸 최상위 = 창안하다 (평가와 종합의 위계 변경)"
             },
             {
-                id: 116, topic: "딕과 캐리(Dick & Carey)", type: "short",
-                q: "딕과 캐리 모형에서 교수 프로그램 초안이 완성된 후, 그 효과성과 오류를 파악하기 위해 일대일 평가, 소집단 평가, 현장 평가를 차례로 실시하여 프로그램을 수정·보완하는 단계를 OOOO(4글자) 설계 및 실행이라고 한다.",
-                accepted: ["형성평가"],
-                a: "형성평가",
-                exp: "내부 설계자가 개발 도중 프로그램 질 개선을 목적으로 실시하는 것은 형성평가, 개발 완료 후 외부 평가자가 가치를 따지는 것은 총괄평가입니다.",
-                tip: "교재나 코스웨어를 개발할 때 일대일 평가와 소집단 평가 같은 '형성평가'를 수시로 실시하여, 학생들의 피드백을 바탕으로 즉각적인 수정을 거쳐야 한다.",
-                m: "딕앤캐리 수정 = 일대일 -> 소집단 -> 현장 (형성평가)"
+                id: 6, topic: "수업목표 진술", type: "short",
+                q: "메이거(Mager)의 수업목표 진술 방식에서 목표가 명확하게 설정되기 위해 반드시 포함되어야 하는 3가지 요건은 '도착점 행동', '상황(조건)', 그리고 도달 여부를 판별하는 기준인 'OO'이다. 빈칸은?",
+                accepted: ["준거", "도달기준", "기준"],
+                a: "준거",
+                exp: "메이거의 조작적 수업목표 진술의 3요소는 상황(조건), 준거(수락기준), 도착점 행동입니다. 예: '100m 트랙에서(상황) 15초 이내에(준거) 달릴 수 있다(도착점 행동)'.",
+                tip: "평가의 타당도를 높이기 위해 수업 목표는 관찰 가능한 행동 용어로 진술되어야 하며, 분명한 '준거'와 '조건'을 명시해야 한다.",
+                m: "메이거 수업목표 3요소 = 조건(상황), 준거, 행동"
             },
             {
-                id: 117, topic: "대안적 설계모형 (RP모형)", type: "short",
-                q: "초기에 최종 결과물의 축소판(원형)을 신속하게 개발하고, 이를 바탕으로 사용자와 지속적으로 상호작용하며 문제점을 수정·보완해 나가는 비선형적 설계 방식을 OOOOOO(6글자) 모형이라 한다.",
-                accepted: ["래피드프로토타입", "프로토타입", "래피드 프로토타입"],
-                a: "래피드 프로토타입 (Rapid Prototype)",
-                exp: "사용자의 요구를 초기에 신속하게 반영할 수 있어 시간과 비용을 줄이고 만족도를 높입니다.",
-                tip: "온라인 학습 자료 개발 시 초기 단계에서 '프로토타입'을 신속히 만들어 학생들에게 시범 적용한 뒤, 그 피드백을 수용하여 비선형적으로 발전시켜야 한다.",
-                m: "신속한 원형 개발 + 사용자 반영 = 래피드 프로토타입"
-            },
-
-            // --- 4. 교수설계이론 (가네, 메릴, 롸이겔루스, 켈러) ---
-            {
-                id: 118, topic: "가네(Gagné) 학습결과", type: "mcq",
-                q: "가네가 제시한 5가지 학습 영역 중, 학습자가 자신의 주의, 학습, 기억, 사고를 통제하고 안내하기 위해 활용하는 내적 과정 능력(예: 독창적 기억술, 새로운 문제해결법 고안)을 뜻하는 것은?",
+                id: 7, topic: "ADDIE 모형", type: "mcq",
+                q: "ADDIE 교수설계 모형의 '설계(Design)' 단계에서 수행되는 주요 활동으로 올바른 것은?",
                 options: [
-                    "지적 기능",
-                    "언어 정보",
-                    "인지 전략",
-                    "태도"
+                    "요구분석 및 최종 학습목표 도출",
+                    "학습자 특성 및 환경 분석",
+                    "평가도구 설계 및 교수전략(매체) 선정",
+                    "교수 프로그램의 형성평가 및 수정"
                 ],
-                a: "인지 전략",
-                exp: "인지전략은 자신의 인지과정을 통제하는 메타인지적 전략이나 창의적 문제해결 전략을 뜻합니다. 단순 개념/원리 적용은 지적기능입니다.",
-                tip: "단순 지식 암기를 넘어, 새로운 과제에 직면했을 때 자신만의 문제해결 방식을 찾아내는 '인지 전략'을 개발하도록 장려해야 한다.",
-                m: "가네 학습결과 = 언/지/인/운/태 (자신을 통제 = 인지전략)"
+                a: "평가도구 설계 및 교수전략(매체) 선정",
+                exp: "요구분석, 학습자/환경/과제분석은 '분석(Analysis)' 단계입니다. 형성평가 및 수정은 '개발(Development)' 단계(또는 평가단계)에서 주로 일어납니다. '설계' 단계에서는 구체적인 수행목표 명시, 평가도구 설계, 교수전략 및 매체 선정이 이루어집니다.",
+                tip: "교수설계의 일관성을 확보하기 위해, 교사는 '분석' 단계에서 도출된 목표를 바탕으로 '설계' 단계에서 평가도구와 교수전략을 긴밀하게 연계하여 개발해야 한다.",
+                m: "분석(요구/학습자/과제) -> 설계(목표/평가/전략) -> 개발(자료제작/형성평가)"
             },
             {
-                id: 119, topic: "가네 수업 9사태", type: "short",
-                q: "가네의 9사태 중, 획득 및 수행 단계에서 학습자가 새롭게 배운 내용을 단기기억에서 장기기억으로 유의미하게 저장하도록 돕기 위해 교사가 그림, 도표, 단서, 청킹 등을 제공하는 교수 활동을 '학습 OO(2글자) 제공'이라 한다.",
-                accepted: ["안내", "안내 제공"],
-                a: "학습 안내 (제공)",
-                exp: "학습 안내 제공 단계는 학습자의 내부 인지과정인 '의미적 부호화(Semantic Encoding)'를 촉진합니다.",
-                tip: "복잡한 내용을 가르칠 때, 단순히 설명만 하는 것을 넘어 기억을 돕는 심상, 개념도, 도표 등을 활용하는 '학습 안내'를 제공하여 부호화를 도와야 한다.",
-                m: "의미적 부호화 촉진 = 학습 안내 제공"
-            },
-            {
-                id: 120, topic: "가네 수업 9사태 (전이)", type: "short",
-                q: "가네의 마지막 수업 사태는 '파지와 전이 증진'이다. 이를 위해 교사는 학습자에게 다양한 종류의 새로운 상황이나 과제를 제시하여 일반화가 잘 일어나도록 지원해야 한다. 이 단계와 짝을 이루는 학습자의 내적 정보처리 과정은 '인출 및 OOO'(3글자)이다.",
-                accepted: ["일반화"],
-                a: "일반화",
-                exp: "일반화(Generalization)는 배운 지식을 다른 맥락에 적용(전이)하는 능력입니다.",
-                tip: "수업의 마무리에 다양한 변형 문제나 실생활 적용 과제를 제시하여, 학습자가 배운 원리를 스스로 '일반화'하여 실전에 전이시킬 수 있게 도와야 한다.",
-                m: "파지와 전이 증진 = 인출 및 일반화"
-            },
-            {
-                id: 121, topic: "메릴(Merrill)의 내용요소 제시이론", type: "mcq",
-                q: "메릴의 1차 자료 제시 형태 중 'Eeg(사례·설명식)'에 해당하는 교수 활동은?",
+                id: 8, topic: "딕과 캐리 모형", type: "mcq",
+                q: "딕과 캐리(Dick & Carey) 모형에서 학습 성공을 위해 학생에게 요구되는 선수 지식이나 출발점 행동이 무엇인지 파악하고, 목표 달성에 필요한 하위 기능들을 계열화하는 단계는?",
                 options: [
-                    "학생에게 '질량 보존의 법칙'의 개념적 정의를 교사가 직접 설명해준다.",
-                    "학생에게 나무가 타서 재가 되는 과정을 보여주며 질량이 어떻게 유지되는지 구체적 예시를 들어 교사가 설명해준다.",
-                    "학생에게 2+2=4 라는 사실을 물어보고 답하게 한다.",
-                    "학생에게 다양한 동물의 사진을 주고 포유류의 공통된 특징을 스스로 찾아내게 질문한다."
+                    "요구분석(교수목적 확인)",
+                    "수업분석(교수분석, 과제분석)",
+                    "수업전략 수립",
+                    "수업자료 개발"
                 ],
-                a: "학생에게 나무가 타서 재가 되는 과정을 보여주며 질량이 어떻게 유지되는지 구체적 예시를 들어 교사가 설명해준다.",
-                exp: "E(Expository, 설명) + eg(Instance, 사례)이므로 교사가 구체적인 예를 들어 설명하는 방식입니다. 정의 설명은 EG(일반·설명)입니다.",
-                tip: "원리를 가르칠 때 추상적인 '일반성(G)'만 설명하지 말고, 실생활과 밀접한 구체적 '사례(eg)'를 들어 설명식(E)과 탐구식(I)을 적절히 혼합해야 한다.",
-                m: "메릴 1차 = E/I (설명/질문) + G/eg (일반/사례)"
+                a: "수업분석(교수분석, 과제분석)",
+                exp: "수업분석(과제분석)은 교수목표 달성을 위해 학습자가 습득해야 할 하위 기능이 무엇인지 규명하고, 출발점 행동을 파악하여 학습의 순서를 결정하는 단계입니다.",
+                tip: "학습 결손을 예방하기 위해 본격적인 수업 전 '과제 분석'을 철저히 하여 목표 달성에 필요한 하위 위계 요소들을 빠짐없이 확인하고 지도해야 한다.",
+                m: "하위기능 분석, 선수지식 확인 = 수업분석(과제분석)"
             },
             {
-                id: 122, topic: "롸이겔루스 정교화 이론", type: "short",
-                q: "롸이겔루스의 미시/거시 조직전략 중, 개별 수업이나 단원이 끝날 때마다 학습한 내용을 망각하지 않도록 일반성, 사례, 연습문항, 개념도 등의 형태로 핵심 내용을 통합시켜 주는 교수 요소를 'OOO'(3글자)라고 한다.",
-                accepted: ["종합자", "종합자(Synthesizer)"],
-                a: "종합자 (Synthesizer)",
-                exp: "요약자가 단순히 내용을 간추리는 것이라면, 종합자는 학습 내용 간의 연결성과 관계(개념도 등)를 보여주는 통합 기능입니다.",
-                tip: "단원 마무리 시에 마인드맵과 같은 '종합자'를 제공하여 개별적으로 배운 지식 조각들이 학습자의 인지 구조 속에서 체계적으로 연결되도록 해야 한다.",
-                m: "정선요종비인학 (종 = 통합해주는 종합자)"
+                id: 9, topic: "학습과제분석 기법", type: "short",
+                q: "학습과제분석 기법 중 위계적인 관계가 없이 언어정보와 같이 비슷한 내용끼리 묶이는 학습과제를 분석할 때 사용하는 기법은 무엇인가? (OO분석)",
+                accepted: ["군집", "군집분석"],
+                a: "군집분석",
+                exp: "가네의 학습목표 유형에 따른 분석 기법으로, 언어정보는 '군집분석', 지적기능은 상하위 관계가 있는 '위계분석', 운동기능은 절차에 따른 '절차분석', 태도는 '통합분석'을 주로 사용합니다.",
+                tip: "단순 사실이나 명칭을 다루는 언어정보 학습 시, 교사는 '군집분석'을 통해 관련된 내용을 유의미하게 묶어 제시하여 학생의 기억(파지)을 도와야 한다.",
+                m: "언어정보=군집 / 지적기능=위계 / 운동기능=절차 / 태도=통합"
             },
             {
-                id: 123, topic: "켈러(Keller) ARCS", type: "short",
-                q: "ARCS 모형의 '주의(Attention)'를 유발하는 3가지 하위 전략은 '지각적 주의환기', '다양성', 그리고 학습자에게 질문을 던지거나 수수께끼를 주어 인지적 갈등을 유발하는 'OOO 주의환기'이다. 3글자는?",
-                accepted: ["탐구적"],
-                a: "탐구적",
-                exp: "탐구적 주의환기는 지적 호기심을 유발하여 스스로 문제를 탐색하게 하는 전략입니다.",
-                tip: "수업 도입부에서 단순히 시청각 자료만 쓰는 것을 넘어, 역설적인 질문을 던져 '탐구적 주의환기'를 이끌어내어 인지적 호기심을 극대화해야 한다.",
-                m: "주의(A) = 지/탐/다"
-            },
-            {
-                id: 124, topic: "켈러(Keller) ARCS", type: "mcq",
-                q: "다음 중 ARCS 모형의 '관련성(Relevance)'을 높이는 전략으로 가장 적절한 것은?",
+                id: 10, topic: "딕과 캐리 모형 - 형성평가", type: "mcq",
+                q: "다음 중 딕과 캐리(Dick & Carey) 모형의 특성 및 절차에 대한 설명으로 가장 옳지 않은 것은?",
                 options: [
-                    "학생이 과제를 스스로 선택하고 통제할 수 있는 권한을 준다.",
-                    "수업 내용이 학생들의 장래 희망이나 실생활 문제에 어떻게 유용하게 쓰이는지 설명한다.",
-                    "과제 성공 시 칭찬 스티커와 내재적 보상을 제공하여 성취감을 높인다.",
-                    "시청각 자료의 색상과 폰트를 눈에 띄게 수시로 바꾸어 제시한다."
+                    "성취목표를 기술한 후, 이에 근거하여 준거지향 평가도구를 개발한다.",
+                    "형성평가는 프로그램의 질을 개선하기 위해 설계자가 일대일 평가, 소집단 평가 등을 실시하는 과정이다.",
+                    "총괄평가는 프로그램 개발 완료 후 외부 평가자에 의해 효과성을 종합 검토하는 과정이다.",
+                    "수업의 형성평가와 총괄평가는 모두 교수설계자가 주도하여 교수 프로그램의 수정·보완에 직접 활용한다."
                 ],
-                a: "수업 내용이 학생들의 장래 희망이나 실생활 문제에 어떻게 유용하게 쓰이는지 설명한다.",
-                exp: "관련성은 친밀성, 목적지향성(장래 유용성), 필요/동기와의 부합성을 통해 높아집니다. 선택/통제는 '자신감', 보상은 '만족감', 시각 변화는 '주의'입니다.",
-                tip: "수업 내용이 학습자의 현재 삶이나 미래 진로와 어떤 연관이 있는지 '목적지향성(관련성)'을 강조하여, 학습의 필요성을 스스로 느끼게 해야 한다.",
-                m: "관련성(R) = 친/목/필"
+                a: "수업의 형성평가와 총괄평가는 모두 교수설계자가 주도하여 교수 프로그램의 수정·보완에 직접 활용한다.",
+                exp: "딕과 캐리 모형에서 '총괄평가'는 교수 프로그램의 효과성을 검증하기 위해 교수설계자가 아닌 '외부 평가자'에 의해 독립적으로 실시되는 단계입니다. 설계 과정의 직접적인 순환 고리 밖에 위치합니다.",
+                tip: "프로그램 개발 중 지속적인 피드백을 통해 질을 개선하는 '형성평가'와 달리, 최종 프로그램의 가치를 객관적으로 판단받기 위해서는 외부 전문가에 의한 '총괄평가'가 필요하다.",
+                m: "형성평가 = 설계자(내부) 개선 / 총괄평가 = 외부자(독립) 가치판단"
             },
-
-            // --- 5. 캐롤, 블룸, 브루너, 오수벨 ---
             {
-                id: 125, topic: "캐롤(Carroll) 학교학습모형", type: "mcq",
-                q: "캐롤의 완전학습 모형에서 '학습에 필요한 시간'을 최소화하여 학습의 정도를 극대화하기 위한 교사 변인으로 묶인 것은?",
+                id: 11, 대분류: "교수설계이론", topic: "롸이겔루스 교수의 3대 변인", type: "mcq",
+                q: "롸이겔루스(Reigeluth)가 제시한 교수의 3대 변인 중 교사가 임의로 통제할 수 없는 '교수조건(Conditions)'에 해당하지 않는 것은?",
                 options: [
-                    "적성, 수업이해력",
+                    "교과내용의 특성",
+                    "교수전략(미시적/거시적 전략)",
+                    "학습자 특성",
+                    "제약조건(환경적 요인)"
+                ],
+                a: "교수전략(미시적/거시적 전략)",
+                exp: "롸이겔루스의 3대 변인은 조건, 방법, 결과입니다. 이 중 '교수전략(조직, 전달, 관리 전략)'은 교사가 통제하고 조작할 수 있는 '교수방법(Methods)' 변인에 해당합니다.",
+                tip: "효과적인 수업을 위해 교사는 통제 불가능한 '교수조건(학습자 특성 등)'을 면밀히 분석한 후, 이에 적합한 '교수방법(조직 및 전달 전략)'을 능동적으로 처방해야 한다.",
+                m: "조건(통제X)=내용, 목적, 제약, 학습자 / 방법(통제O)=조직, 전달, 관리"
+            },
+            {
+                id: 12, topic: "가네 수업사태", type: "short",
+                q: "가네(Gagné)의 9가지 수업사태 중 첫 번째 단계로, 새로운 자극을 제시하여 정보처리과정 상의 '주의 집중'을 유도하는 교수활동은 무엇인가? (OO OO)",
+                accepted: ["주의 획득", "주의획득", "주의환기"],
+                a: "주의 획득",
+                exp: "가네의 수업사태 1단계는 '주의 획득(Gaining attention)'입니다. 학습자의 인지과정 중 수용기(감각등록기)에서 정보에 주의를 기울이게 하는 단계입니다.",
+                tip: "수업 도입부에서 교사는 시청각 매체나 흥미로운 질문을 활용하여 학습자의 '주의를 획득'하고, 작동기억으로의 인출을 촉진할 수 있는 선행조직자를 제시해야 한다.",
+                m: "가네 1단계 = 주의 획득 (정보처리 = 주의 집중)"
+            },
+            {
+                id: 13, topic: "메릴 내용요소 제시이론", type: "mcq",
+                q: "메릴(Merrill)의 내용요소 제시이론에서 수행수준 3가지에 포함되지 않는 것은?",
+                options: [
+                    "기억하기",
+                    "활용하기",
+                    "발견하기",
+                    "적용하기"
+                ],
+                a: "적용하기",
+                exp: "메릴은 수행수준을 기억(Remember), 활용(Use), 발견(Find)의 3가지로 분류하고 내용의 범주를 사실, 개념, 절차, 원리로 나누어 총 10가지 학습유형(사실의 발견/활용은 제외)을 도출했습니다.",
+                tip: "학습자가 단순히 지식을 '기억'하는 수준을 넘어, 새로운 문제 상황에 원리를 '활용'하고 스스로 새로운 개념을 '발견'할 수 있도록 다차원적인 교수 처방을 설계해야 한다.",
+                m: "메릴 수행수준 3가지 = 기억, 활용, 발견"
+            },
+            {
+                id: 14, topic: "롸이겔루스 정교화이론", type: "short",
+                q: "롸이겔루스(Reigeluth)의 정교화 이론 전략 중, 새로운 아이디어를 학습자들에게 이미 친숙한 아이디어와 연관 지어 설명함으로써 이해를 돕는 전략을 무엇이라고 하는가? (2글자)",
+                accepted: ["비유"],
+                a: "비유",
+                exp: "정교화 이론의 7가지 전략 중 하나인 '비유(Analogy)'는 새로운 정보를 친숙한 정보에 연결하여 인지적 동화를 촉진하는 중요한 교수전략입니다.",
+                tip: "추상적이고 복잡한 개념을 지도할 때, 학생들에게 친숙한 실생활 사례를 활용한 '비유' 전략을 통해 인지적 정교화를 도와야 한다.",
+                m: "정선요종 비인학 / 친숙한 정보 연결 = 비유"
+            },
+            {
+                id: 15, topic: "켈러 ARCS 모형", type: "mcq",
+                q: "켈러(Keller)의 ARCS 모형에서 '관련성(Relevance)'을 높이기 위한 교수 전략에 해당하지 않는 것은?",
+                options: [
+                    "친밀성: 학습자의 경험과 가치관에 부합하는 예문을 사용한다.",
+                    "목적지향성: 학습 내용이 미래의 직업이나 실생활에 어떻게 유용한지 알려준다.",
+                    "공정성: 평가 기준과 결과를 투명하게 공개하여 보상에 대한 기대를 충족시킨다.",
+                    "동기와의 부합성: 학습자의 성취욕구, 권력욕구 등 다양한 동기 유형에 맞는 역할을 부여한다."
+                ],
+                a: "공정성: 평가 기준과 결과를 투명하게 공개하여 보상에 대한 기대를 충족시킨다.",
+                exp: "공정성(공정성 유지)은 학습 후의 결과에 대한 만족감을 다루는 '만족감(Satisfaction)' 요소의 하위 전략입니다. 관련성 하위전략은 친밀성, 목적지향성, 필요나 동기와의 부합성입니다.",
+                tip: "학습 동기를 유지하기 위해 교사는 실생활 사례를 통해 수업의 '관련성'을 확보하고, 평가의 '공정성'을 지켜 내적 '만족감'을 높여야 한다.",
+                m: "관련성(R) = 친/목/필 / 만족감(S) = 자/긍/공"
+            },
+            {
+                id: 16, topic: "캐롤 학교학습모형", type: "mcq",
+                q: "캐롤(Carroll)의 완전학습 모형에서 '학습에 필요한 시간'을 최소화하여 학습의 정도를 극대화하기 위한 '교사 변인'으로 묶인 것은?",
+                options: [
+                    "교수의 질, 수업이해력",
                     "학습지속력, 학습 기회",
-                    "교수의 질, 학습 기회",
-                    "교수의 질, 수업이해력"
+                    "적성, 수업이해력",
+                    "교수의 질, 학습 기회"
                 ],
-                a: "교수의 질, 수업이해력",
-                exp: "학습에 필요한 시간 = f(적성, 수업이해력, 교수의 질). 교사가 명확히 가르치면(수업의 질) 학생의 이해력이 높아져 필요한 시간이 줄어듭니다. 학습기회와 학습지속력은 '사용된 시간' 변인입니다.",
-                tip: "학습 부진을 극복하기 위해, 교사는 '교수의 질'을 높여 명확한 단서를 제공함으로써 학생의 '수업 이해력'을 높이고 과제 완수에 필요한 시간을 단축시켜야 한다.",
-                m: "필요시간 = 적성, 이해력, 교수의 질 / 사용시간 = 지구력(지속력), 기회"
+                a: "교수의 질, 학습 기회",
+                exp: "캐롤의 모형에서 '교수의 질'과 '학습 기회'는 교사가 통제하고 부여할 수 있는 교사 변인입니다. 반면 적성, 수업이해력, 학습지속력(지구력)은 학습자 개인의 변인입니다.",
+                tip: "학습 부진을 극복하기 위해, 교사는 '교수의 질'을 높여 명확한 단서를 제공함으로써 학생의 '수업 이해력'을 돕고 과제 완수에 필요한 시간을 단축시켜야 한다.",
+                m: "교사 변인 = 교수의 질, 학습 기회 / 학생 변인 = 적성, 이해력, 지속력"
             },
             {
-                id: 126, topic: "블룸(Bloom) 완전학습", type: "short",
-                q: "블룸의 완전학습 모형에서 수업 중 학습 부진 학생에게 보충 과정을, 도달 학생에게 심화 과정을 제공하기 위해 반드시 수시로 실시하여 피드백을 제공해야 하는 평가는 OOOO(4글자)이다.",
-                accepted: ["형성평가"],
-                a: "형성평가",
-                exp: "블룸은 형성평가와 이에 따른 교정학습을 완전학습의 핵심 요소로 보았습니다.",
-                tip: "학습 결손이 누적되지 않도록 단위 수업 중 '형성평가'를 지속적으로 실시하여, 미도달 학생에게 즉각적인 교정 및 보충학습 기회를 제공해야 한다.",
-                m: "완전학습의 핵심 = 형성평가 + 교정학습"
+                id: 17, topic: "브루너 발견학습", type: "short",
+                q: "브루너(Bruner)의 발견학습에서 교사가 단순히 지식 탐구의 최종 결과물만을 전달하는 것을 비판하며 부르는 용어로, 지식의 구조를 내면화하지 못하고 암기에 그치게 만드는 언어 형태를 무엇이라 하는가? (4글자)",
+                accepted: ["중간언어"],
+                a: "중간언어",
+                exp: "탐구 과정이 배제된 채 최종 결과물로만 전달되는 지식을 '중간언어'라고 합니다. 브루너는 중간언어 대신 학생들이 직접 지식의 구조를 발견하도록 하는 '교과언어'를 가르쳐야 한다고 강조했습니다.",
+                tip: "기계적인 암기를 유발하는 '중간언어' 중심의 주입식 교육을 탈피하고, 학생 스스로 원리와 규칙을 찾아내는 발견학습 환경을 제공해야 한다.",
+                m: "결과물 중심 전달 = 중간언어 / 탐구 유도 = 교과언어"
             },
             {
-                id: 127, topic: "브루너(Bruner) 발견학습", type: "mcq",
-                q: "브루너의 발견학습 모형의 핵심 요소와 특징으로 적절하지 않은 것은?",
+                id: 18, topic: "오수벨 유의미학습", type: "mcq",
+                q: "오수벨(Ausubel)의 유의미 학습에서 유의미한 학습이 일어나기 위한 3가지 필수 조건으로 적절하지 않은 것은?",
                 options: [
-                    "학생들에게 단순한 사실(중간언어)을 암기하게 하기보다 교과언어를 통한 지식의 구조 파악을 강조한다.",
-                    "학습 내용의 최종 형태를 교사가 연역적으로 설명하여 주입하는 방식을 취한다.",
-                    "학습 내용의 발달 단계에 따라 점진적으로 심화되는 나선형 교육과정을 지지한다.",
-                    "내재적 보상인 발견의 기쁨과 학습의욕(경향성)을 중요하게 생각한다."
+                    "학습과제가 실사성과 구속성을 가져야 한다. (논리적 유의미성)",
+                    "학습자가 무조건적으로 암기하려는 강한 내적 동기를 지녀야 한다.",
+                    "학습자의 인지구조 속에 새로운 과제를 포섭할 관련 정착 의미(지식)가 있어야 한다. (잠재적 유의미성)",
+                    "학습자가 새로운 과제를 기존의 인지구조에 결부시키려는 유의미한 학습태세를 갖추어야 한다. (심리적 유의미성)"
                 ],
-                a: "학습 내용의 최종 형태를 교사가 연역적으로 설명하여 주입하는 방식을 취한다.",
-                exp: "발견학습은 학생이 다양한 구체적 사례들을 통해 스스로 원리와 지식의 구조를 '귀납적'으로 발견하도록 유도합니다.",
-                tip: "지식을 기계적으로 전달(중간언어)하지 말고, 학습자 스스로 구체적 사례 속에서 '지식의 구조'를 귀납적으로 발견하도록 조력해야 한다.",
-                m: "발견학습 = 귀납적, 지식의 구조, 나선형"
+                a: "학습자가 무조건적으로 암기하려는 강한 내적 동기를 지녀야 한다.",
+                exp: "유의미 학습의 조건은 1) 과제의 논리적 유의미성(실사성, 구속성), 2) 인지구조 내의 관련 정착 의미, 3) 유의미 학습 태세입니다. 단순 기계적 암기는 유의미 학습과 반대되는 개념입니다.",
+                tip: "새로운 지식의 성공적인 포섭을 위해, 교사는 선행조직자를 제공하여 '관련 정착 의미'를 활성화하고 유의미한 학습 태세를 촉진해야 한다.",
+                m: "유의미학습 조건 = 논리적(과제) + 잠재적(관련정착의미) + 심리적(학습태세)"
             },
             {
-                id: 128, topic: "오수벨(Ausubel) 유의미 학습", type: "short",
-                q: "오수벨 이론에서, 학습자의 선행지식과 새로운 과제 간에 전혀 유사성이 없을 때, 새로운 내용을 포섭할 수 있는 인지적 뼈대(거시적 개념)를 수업 도입부에 미리 제시하는 선행조직자를 'OO 조직자'라고 한다. 2글자는?",
-                accepted: ["설명", "설명적"],
-                a: "설명 조직자",
-                exp: "관련 정착 지식이 없을 때는 '설명조직자(일반적/포괄적)'를, 유사성이 있어 변별이 필요할 때는 '비교조직자'를 사용합니다.",
-                tip: "완전히 생소한 단원을 시작할 때, 교사는 '설명 조직자'를 미리 제공하여 학생들이 새 지식을 유의미하게 병합(포섭)할 수 있는 인지적 닻을 내려주어야 한다.",
-                m: "생소함 = 설명조직자 / 헷갈림 = 비교조직자"
+                id: 19, topic: "오수벨 포섭", type: "short",
+                q: "오수벨 유의미학습이론에서 새로운 학습과제를 기존 개념의 확장, 수정, 정교화를 통해 하위로 병합시키는 포섭의 종류는 무엇인가? (OOO 포섭)",
+                accepted: ["상관적", "상관적포섭", "상관적 포섭"],
+                a: "상관적 포섭",
+                exp: "하위적 포섭 중에서도 기존 개념이 단순 적용되는 것은 파생적 포섭, 기존 개념 자체가 수정/확장되는 것은 상관적 포섭이라고 합니다.",
+                tip: "학생의 인지구조를 정교화하기 위해, 기존 지식의 정의를 확장해야만 이해할 수 있는 예외적 사례를 제시하여 '상관적 포섭'을 유도할 수 있다.",
+                m: "구체적 사례 적용 = 파생적 / 개념의 확장 및 수정 = 상관적 포섭"
             },
             {
-                id: 129, topic: "오수벨 포섭", type: "short",
-                q: "기존의 인지 구조(예: 평행사변형) 아래에 새로운 하위 개념(예: 마름모, 직사각형)을 학습하여 포함시키는 과정을 하위적 포섭이라고 한다. 그중에서도 기존 개념의 속성 자체가 확장, 수정, 정교화되는 인지적 변화를 'OOO 포섭'이라고 한다. 3글자는?",
-                accepted: ["상관적"],
-                a: "상관적",
-                exp: "단순한 예시 추가는 '파생적 포섭'이고, 개념이 확장/수정되는 것은 '상관적 포섭'입니다.",
-                tip: "유의미 학습이 성공하려면, 학생이 단순히 사례를 암기(파생적 포섭)하는 것을 넘어 기존의 오개념을 수정하고 인지구조를 정교화하는 '상관적 포섭'이 일어나도록 유도해야 한다.",
-                m: "개념 수정/확장 = 상관적 포섭"
-            },
-
-            // --- 6. 구성주의 교수설계 (Jonassen, 4C/ID, CSCL) ---
-            {
-                id: 130, topic: "조나센 CLES", type: "short",
-                q: "조나센의 구성주의 학습환경 설계 모형(CLES)에서 학습자가 활동하는 중심 영역인 '문제'를 구성하는 3요소는 '문제 맥락', '문제 표상', 그리고 학습자가 가설을 세우고 변인을 직접 통제해보는 물리적/가상적 시뮬레이터인 'OOOO'(4글자)이다.",
-                accepted: ["조작공간"],
-                a: "조작공간",
-                exp: "문제를 이해하고 실험해볼 수 있는 능동적 개입 공간입니다.",
-                tip: "실제적 문제를 제공할 때, 학생이 변인을 직접 통제하고 가설을 검증해 볼 수 있는 '조작공간'을 설계하여 능동적 탐구 과정을 지원해야 한다.",
-                m: "문제 3요소 = 맥(맥락) / 표(표상) / 조(조작공간)"
+                id: 20, topic: "조나센 CLES", type: "mcq",
+                q: "조나센(Jonassen)의 구성주의 학습환경 설계 모형(CLES)에서 학습자가 문제 해결 과정을 더 잘 이해하도록 돕는 시각화 도구, 모델링 도구, 수행지원 도구 등을 포괄하여 부르는 구성 요소는?",
+                options: [
+                    "관련 사례 (Related Cases)",
+                    "인지 도구 (Cognitive Tools)",
+                    "대화/협력 도구 (Conversation/Collaboration Tools)",
+                    "사회적/맥락적 지원 (Social/Contextual Support)"
+                ],
+                a: "인지 도구 (Cognitive Tools)",
+                exp: "학습자의 인지적 부담을 덜어주고 문제 해결을 지원하는 컴퓨터 프로그램이나 소프트웨어 등을 '인지도구'라고 합니다.",
+                tip: "복잡한 비구조화된 문제를 해결하는 과정에서 학생의 인지적 부담을 줄여주기 위해 마인드맵 프로그램과 같은 '인지 도구'를 적극 지원해야 한다.",
+                m: "조나센 CLES 구성요소: 문제, 관련사례, 정보자원, 인지도구, 협력도구, 지원"
             },
             {
-                id: 131, topic: "4C/ID 모형", type: "mcq",
-                q: "반 메리엔보어의 4C/ID 모형에서, 실제적 문제해결을 위해 학습과제와 관련된 특정 인지적·운동적 기능을 자동화시키기 위해 설계하는 구성요소는?",
+                id: 21, topic: "4C/ID 모형", type: "mcq",
+                q: "복잡한 인지 기능 개발을 위한 4C/ID 모형에서, 문제해결에 필요한 자동화된 '절차적 지식'의 학습을 돕기 위해 과제 수행 과정 중에 즉각적으로 제공되는 정보는 무엇인가?",
                 options: [
                     "학습과제 (Learning Tasks)",
                     "지원정보 (Supportive Information)",
-                    "절차정보 (Procedural Information)",
+                    "절차정보 (JIT Information)",
                     "부분과제연습 (Part-task Practice)"
                 ],
-                a: "부분과제연습 (Part-task Practice)",
-                exp: "복잡한 문제해결 중 구구단이나 악기 운지법처럼 기계적으로 자동화되어야 하는 반복적 기술은 '부분과제연습'을 통해 숙달시킵니다.",
-                tip: "복잡한 역량을 기르기 위해 나선형의 실제적 학습과제를 제시하되, 인지부하를 줄이기 위해 기초 기능에 대한 '부분과제연습'을 병행하여 자동화를 도와야 한다.",
-                m: "기능의 자동화 = 부분과제연습"
+                a: "절차정보 (JIT Information)",
+                exp: "4C/ID 모형에서 선언적 지식을 지원하는 것은 '지원정보', 순환적/절차적 지식 수행 시 즉시(Just-In-Time) 제공되는 힌트나 정보는 '절차정보'입니다.",
+                tip: "실제적 과제 수행 시 복잡성을 관리하기 위해 교사는 개념적 원리인 '지원정보'와 문제해결 순서에 관한 '절차정보'를 시의적절하게 제공해야 한다.",
+                m: "선언적 지식 = 지원정보 / 절차적 지식 = 절차정보(JIT)"
             },
             {
-                id: 132, topic: "상황학습이론", type: "short",
-                q: "라브와 웽거(Lave & Wenger)의 상황학습에서, 학습은 실천공동체의 주변부에서 관찰하며 시작하여 점차 핵심적인 구성원으로 성장해 가는 과정이다. 이를 8글자로 'OOO OOO OO'이라고 한다.",
-                accepted: ["정당한주변적참여", "정당한 주변적 참여", "정당한주변적 참여", "정당한 주변적참여"],
+                id: 22, topic: "상황학습이론", type: "short",
+                q: "라브와 웽거(Lave & Wenger)의 상황학습에서 학습자가 실천공동체(Community of Practice)의 초보자로서 제한적으로 참여하다가 점차 핵심적인 전문가 구성원으로 성장해 나가는 과정을 뜻하는 8글자의 용어는? (OOO OOO OO)",
+                accepted: ["정당한주변적참여", "정당한 주변적 참여"],
                 a: "정당한 주변적 참여 (LPP)",
-                exp: "초보자가 공동체의 문화와 과제를 주변에서 관찰하고 쉬운 일부터 참여하며 전문가로 성장하는 과정입니다.",
-                tip: "도제식 학습을 교실에 적용하여, 학생이 처음에는 쉬운 역할을 맡는 '정당한 주변적 참여'로 시작해 점차 복잡한 프로젝트의 핵심 리더로 성장하도록 스캐폴딩해야 한다.",
-                m: "상황학습 = 실천공동체 + 정당한 주변적 참여"
+                exp: "학습은 개인이 지식을 획득하는 것이 아니라, 공동체의 일원으로서 '정당한 주변적 참여(Legitimate Peripheral Participation)'를 거쳐 전문가의 정체성을 형성하는 사회적 과정입니다.",
+                tip: "상황학습의 원리를 적용하여, 학생이 교실이라는 실천공동체 내에서 관찰자 및 보조자의 역할부터 시작해 점진적으로 문제해결의 중심 역할을 수행하는 '정당한 주변적 참여'를 경험하도록 설계해야 한다.",
+                m: "상황학습 핵심 = 실천공동체에서의 '정당한 주변적 참여'"
             },
             {
-                id: 133, topic: "인지적 유연성 이론", type: "mcq",
-                q: "스피로(Spiro)의 인지적 유연성 이론에 따른 교수 전략으로 가장 올바른 것은?",
+                id: 23, topic: "인지적 도제 모형", type: "mcq",
+                q: "인지적 도제 이론(Cognitive Apprenticeship)의 교수 절차 중, 학습자가 자신이 학습한 지식이나 문제해결 과정을 다른 사람에게 말이나 글로 명백하게 표현하게 하는 단계는?",
                 options: [
-                    "지식을 가장 단순화된 형태로 제시하여 인지부하를 최소화한다.",
-                    "한 번 배운 내용을 순차적이고 고정된 하나의 방식(단일 시각)으로만 철저히 마스터하게 한다.",
-                    "동일한 학습 자료나 과제를 다른 시기에 다른 목적과 다양한 관점으로 십자형으로 엮어(임의적 접근) 검토하게 한다.",
-                    "초보자에게 처음부터 정답이 하나로 정해진 고도로 구조화된 객관식 문제만 제공한다."
+                    "모델링 (Modeling)",
+                    "명료화 (Articulation)",
+                    "반성적 사고 (Reflection)",
+                    "탐색 (Exploration)"
                 ],
-                a: "동일한 학습 자료나 과제를 다른 시기에 다른 목적과 다양한 관점으로 십자형으로 엮어(임의적 접근) 검토하게 한다.",
-                exp: "비구조화된 고급 지식을 상황에 맞게 융통성 있게 활용하려면, 하이퍼미디어를 통한 '임의적 접근(Random access)'과 '다양한 소규모 예시'가 필요합니다.",
-                tip: "복잡한 현실 문제를 해결하는 융통성을 기르기 위해, 교사는 '인지적 유연성' 이론에 따라 하이퍼미디어를 활용하여 동일 과제를 다각도(임의적 접근)에서 분석하게 해야 한다.",
-                m: "인지적 유연성 = 하이퍼미디어 + 임의적 접근 + 다차원 조망"
+                a: "명료화 (Articulation)",
+                exp: "전문가의 시범(모델링)-코칭-스캐폴딩을 거쳐, 학습자가 자신의 사고 과정을 외부로 표현하는 단계가 '명료화'입니다. 이후 자신의 방법과 전문가의 방법을 비교하는 것이 '반성적 사고'입니다.",
+                tip: "교사는 학습자가 문제해결 과정을 무의식적으로 수행하는 데 그치지 않고, 그 절차와 이유를 언어로 설명하게 하는 '명료화' 단계를 통해 메타인지 능력을 길러주어야 한다.",
+                m: "인지적 도제 = 모-코-스-명-반-탐 / 말이나 글로 표현 = 명료화"
             },
             {
-                id: 134, topic: "목표기반시나리오 (GBS)", type: "short",
-                q: "생크(Schank)의 GBS 모형에서, 학생들에게 '당신은 지구 온난화를 막아야 하는 환경부 장관입니다'처럼 학습 목표를 숨긴 채 구체적이고 몰입감 있는 이야기와 임무를 부여하는 것을 OOOOO(5글자)라고 한다.",
-                accepted: ["커버스토리"],
-                a: "커버스토리",
-                exp: "학생의 내적 동기와 역할 수행 몰입도를 극대화하는 극적 장치입니다.",
-                tip: "학생들의 흥미를 유발하기 위해 GBS 모형의 '커버스토리'를 설정하여, 가상의 역할을 부여하고 스토리 속에서 미션을 수행하도록 학습을 디자인해야 한다.",
-                m: "GBS = 커버스토리 + 역할 부여"
+                id: 24, topic: "인지적 유연성 이론", type: "short",
+                q: "스피로(Spiro)의 인지적 유연성 이론에서, 비정형화되고 다차원적인 지식을 이해시키기 위해 동일한 학습 자료라도 여러 시기에 다양한 목적과 관점을 가지고 비순차적으로 학습하도록 하는 방식을 OOO OOOO(Random Access)이라고 한다. 6글자 빈칸은?",
+                accepted: ["임의적접근학습", "임의적 접근학습", "임의적접근 학습"],
+                a: "임의적 접근학습 (Random Access)",
+                exp: "복잡한 지식을 하나의 고정된 관점으로만 가르치는 것을 피하고, 하이퍼미디어를 통해 다방면으로 넘나들며 접근하게 하여 상황에 맞게 지식을 재구성하는 유연성을 기르는 방법입니다.",
+                tip: "복잡한 현대 사회의 문제를 해결하기 위해, 교사는 단편적 지식 전달을 지양하고 '임의적 접근 학습'을 통해 다양한 관점에서 사례를 교차 분석하는 능력을 길러주어야 한다.",
+                m: "인지적 유연성 = 비정형적 지식 + 하이퍼미디어 + 임의적 접근학습"
             },
             {
-                id: 135, topic: "상보적 교수법", type: "short",
-                q: "팔린스카와 브라운의 상보적 교수법(Reciprocal Teaching)은 독해력 향상을 위해 교사와 학생, 학생 간에 역할을 교대하며 글을 읽는 방식이다. 이 과정에서 사용되는 4가지 핵심 전략은 예측하기, 질문하기, 명료화하기, 그리고 중요한 내용을 간추리는 'OOOO'(4글자)이다.",
-                accepted: ["요약하기"],
-                a: "요약하기",
-                exp: "예측(Predicting), 질문(Questioning), 명료화(Clarifying), 요약(Summarizing) 전략을 통해 메타인지적 독해력을 기릅니다.",
-                tip: "문해력이 떨어지는 학생들을 위해 '상보적 교수법'을 도입하여, 학생 스스로 질문을 만들고 글을 '요약'하며 동료와 대화하는 과정에서 주도적 독해 전략을 체화하게 해야 한다.",
-                m: "상보적 = 예/질/명/요"
-            },
-            {
-                id: 136, topic: "자원기반학습 / 웹 퀘스트", type: "mcq",
-                q: "인터넷 정보를 활용한 프로젝트 탐구 학습인 '웹 퀘스트(WebQuest)'의 특징으로 틀린 것은?",
+                id: 25, topic: "목표기반시나리오(GBS)", type: "mcq",
+                q: "생크(Shank)의 목표기반시나리오(GBS) 구성 요소 중, 목표 달성을 위해 학생들이 수행해야 할 '미션'을 이야기 형식으로 설명하고 상황과 맥락을 부여하는 것은?",
                 options: [
-                    "학생들이 방대한 웹 정보 속에서 길을 잃지 않도록 교사가 사전에 탐색 자원과 과정을 치밀하게 설계하여 안내한다.",
-                    "단순한 정보의 수집이나 복사-붙여넣기가 아닌, 고차원적인 분석과 종합(문제해결)을 요구한다.",
-                    "개별 경쟁 학습을 원칙으로 하며, 협동학습이나 동료와의 상호작용은 일절 배제한다.",
-                    "일반적으로 소개 - 과제 - 과정 - 자원 - 평가 - 결론의 절차로 진행된다."
+                    "역할 (Role)",
+                    "커버스토리 (Cover Story)",
+                    "시나리오 운영 설계 (Operations)",
+                    "학습 자원 (Resources)"
                 ],
-                a: "개별 경쟁 학습을 원칙으로 하며, 협동학습이나 동료와의 상호작용은 일절 배제한다.",
-                exp: "웹 퀘스트는 공동의 과제 해결을 위한 소집단 '협동학습'을 적극 권장하며 상호작용을 중시합니다.",
-                tip: "인터넷의 정보 과잉 속에서 시간 낭비를 막기 위해, 교사는 검증된 링크와 명확한 경로를 제공하는 '웹 퀘스트'를 설계하고 협업을 통해 산출물을 도출하게 해야 한다.",
-                m: "안내된 탐구 + 소집단 협동 = 웹 퀘스트"
+                a: "커버스토리 (Cover Story)",
+                exp: "커버스토리는 목표 달성을 위한 활동을 내러티브(이야기) 형식으로 감싸 학습자의 흥미를 유발하고 맥락을 제공하는 역할을 합니다.",
+                tip: "수업의 몰입도를 높이기 위해 교사는 단순 과제 제시를 넘어, 실생활과 밀접하게 연관된 흥미로운 '커버스토리'를 개발하여 학생에게 구체적인 미션과 역할을 부여해야 한다.",
+                m: "GBS 구성요소 = 목표, 미션, 커버스토리, 역할, 운영설계, 자원, 피드백"
             },
             {
-                id: 137, topic: "Big 6 Skills", type: "short",
-                q: "정보 리터러시를 기르기 위한 에이젠버그와 버코위츠의 'Big 6 Skills' 모형의 첫 번째 단계는 학생 스스로 어떤 정보가 필요한지 파악하는 'OO OO'(4글자) 단계이다. 빈칸은?",
-                accepted: ["과제정의", "과제 정의"],
-                a: "과제 정의 (Task Definition)",
-                exp: "Big 6: 과제정의 - 정보탐색전략 - 소재파악과 접근 - 정보활용 - 통합정리 - 평가",
-                tip: "맹목적인 정보 검색을 방지하기 위해, 수업 초반에 'Big 6 Skills'의 첫 단계인 '과제 정의'를 명확히 하게 하여 탐색의 목적성을 확립시켜야 한다.",
-                m: "과정소활통평 (과제정의 부터)"
-            },
-
-            // --- 7. 개별화 학습 & 토의법 ---
-            {
-                id: 138, topic: "개별화 학습 - 스키너/켈러", type: "short",
-                q: "학습 부진아의 완전학습을 위해 고안된 스키너의 프로그램 교수법 원리 중, 학생이 답을 작성하면 프로그램이 그 자리에서 즉각적으로 정답 여부를 알려주어 강화를 제공하는 원리를 'OO OO의 원리'라고 한다. 4글자는?",
-                accepted: ["즉시확인", "즉시 확인"],
-                a: "즉시 확인",
-                exp: "점진적 접근, 적극적 반응, 자기 속도, 즉시 확인, 학습자 검증의 5대 원리가 있습니다.",
-                tip: "스마트 기기를 활용한 드릴형(Drill & Practice) 코스웨어를 사용할 때, 시스템이 오답에 대해 '즉각적인 피드백(즉시 확인)'을 제공하여 학습 부진 학생의 인지적 오류를 바로잡아 주어야 한다.",
-                m: "프로그램 학습 = 점/적/즉/자/검"
-            },
-            {
-                id: 139, topic: "토의식 수업", type: "mcq",
-                q: "토의법의 유형 중, 찬반의 상반된 견해를 가진 소수의 전문가(또는 학생 대표)가 다수의 청중 앞에서 사회자의 진행에 따라 열띤 토론을 벌이는 형태(예: 100분 토론)는 무엇인가?",
+                id: 26, topic: "웹 퀘스트", type: "mcq",
+                q: "인터넷 정보를 활용한 과제해결 활동인 닷지의 웹 퀘스트(WebQuest) 모형에 대한 설명으로 가장 옳지 않은 것은?",
                 options: [
-                    "심포지엄 (Symposium)",
-                    "배심회의 / 패널토의 (Panel)",
-                    "버즈토의 (Buzz)",
-                    "포럼 (Forum)"
+                    "학생들이 인터넷에서 방황하지 않도록 교사가 사전에 유용한 학습 자원의 링크(웹 사이트)를 엄선하여 제공한다.",
+                    "단순한 정보 검색을 넘어 수집한 정보를 종합, 분석, 평가하는 고차원적 사고를 요구한다.",
+                    "오프라인에서의 협동학습보다는 철저히 개인 단위로 정보 탐색 및 리포트를 작성하도록 통제한다.",
+                    "소개-과제-과정-자원-평가-결론의 구체적인 절차를 통해 학습자의 자기주도적 탐구를 체계적으로 안내한다."
                 ],
-                a: "배심회의 / 패널토의 (Panel)",
-                exp: "패널(배심)토의는 견해차(찬반)가 명확한 대표자들이 토론하는 방식입니다. 심포지엄은 각자의 전문 분야를 연설하는 형태입니다.",
-                tip: "사회적 찬반 논란이 있는 쟁점 사안(예: AI 윤리, 기후 위기 대책)을 다룰 때 '패널토의'를 적용하여 다각적인 시각을 기르고 비판적 사고력을 함양해야 한다.",
-                m: "찬반 상반된 대표 토론 = 패널토의"
+                a: "오프라인에서의 협동학습보다는 철저히 개인 단위로 정보 탐색 및 리포트를 작성하도록 통제한다.",
+                exp: "웹 퀘스트는 학습자 간의 역할 분담과 협력학습을 매우 강조합니다. 집단 내에서 각자의 역할을 수행하며 정보를 모아 공동의 결과물을 만들어냅니다.",
+                tip: "방대한 인터넷 정보 속에서 학습자의 인지적 과부하를 막기 위해, 교사는 웹 퀘스트를 활용하여 사전에 검증된 '학습 자원'을 제공하고 학생 간 협동적 문제해결을 안내해야 한다.",
+                m: "웹 퀘스트 = 구조화된 인터넷 자원 제공 + 협동학습 + 리포트 작성"
             },
             {
-                id: 140, topic: "버즈토의(Buzz)", type: "short",
-                q: "3~6명으로 구성된 소집단이 동시에 윙윙거리듯 활발하게 토의를 진행하고, 이후 사회자가 비슷한 결론의 집단을 점점 합쳐가며 전체 의견을 도출하는 토의 방식을 OOOO(4글자)라고 한다.",
-                accepted: ["버즈토의"],
-                a: "버즈토의 (Buzz Session)",
-                exp: "소수 인원이라 심리적 긴장감이 줄어들어 참여도가 극대화됩니다.",
-                tip: "소극적인 학생들의 발언 기회를 보장하기 위해 대집단 토의 전 '버즈토의'를 거쳐 소집단 내에서 아이디어를 활발히 발산하게 한 후 전체 토의로 수렴해야 한다.",
-                m: "윙윙거리는 소집단 발산 = 버즈토의"
+                id: 27, topic: "협동학습 모형 (STAD)", type: "short",
+                q: "슬라빈(Slavin)의 성취과제분담학습 모형으로, 이질적인 4인 1조를 구성한 뒤 학습, 퀴즈 실시 후 '과거 개인 점수'와 비교하여 계산된 '개인 향상 점수'를 합산하여 최우수 팀에게 집단 보상을 제공하는 모형의 영문 약어는? (4글자)",
+                accepted: ["STAD", "stad"],
+                a: "STAD",
+                exp: "STAD는 집단 보상, 개별 책무성, 성취결과 균등분배(향상 점수 기준)의 특징을 가지며, 학습 능력이 낮은 학생도 팀 점수에 기여할 수 있게 하여 동기를 유발합니다.",
+                tip: "학업 성취도가 낮은 학생들의 소외를 막기 위해, '개인 향상 점수'를 기준으로 집단 보상을 제공하는 STAD 모형을 적용하여 모든 구성원의 성취 동기와 협동심을 유발해야 한다.",
+                m: "향상 점수 합산 팀 보상 = STAD (쪽지시험 기준)"
             },
             {
-                id: 141, topic: "하브루타", type: "short",
-                q: "유대인의 전통적인 토론 교육법으로, 학생 두 명이 짝을 이루어 하나의 주제에 대해 찬반을 바꾸어가며 끊임없이 질문과 논쟁을 주고받는 방식을 OOOO(4글자)라고 한다.",
-                accepted: ["하브루타"],
-                a: "하브루타",
-                exp: "자신의 생각을 말하고 상대의 논리를 비판하며 메타인지를 고도로 활성화시킵니다.",
-                tip: "교실 수업 시 짝과 함께 '하브루타'식 질문 주고받기를 활성화하여, 학생이 자신이 아는 것과 모르는 것을 메타인지적으로 성찰하도록 유도해야 한다.",
-                m: "짝지어 질문과 논쟁 = 하브루타"
-            },
-
-            // --- 8. 협동학습 ---
-            {
-                id: 142, topic: "STAD (성취과제분담)", type: "short",
-                q: "보상 중심 협동학습인 STAD 모형에서는 이질적인 집단 구성원들이 함께 학습한 후 개별 퀴즈를 본다. 이때 팀의 성적은 절대 점수가 아니라, 각 학생이 과거 점수보다 얼마나 더 올랐는지를 바탕으로 계산하는 'OO OO'(4글자)를 합산하여 보상한다. 빈칸은?",
-                accepted: ["향상점수"],
-                a: "향상점수",
-                exp: "향상점수(개인별 성장)를 집단 점수에 반영함으로써, 학업 성취가 낮은 학생도 팀에 기여할 수 있는 균등한 성공 기회를 갖게 됩니다.",
-                tip: "학습 부진 학생의 소외를 막기 위해 STAD 모형을 적용하여, 절대 점수 대신 '개인 향상 점수'를 팀 보상에 반영함으로써 모두가 동등하게 팀에 기여하는 개별 책무성을 길러주어야 한다.",
-                m: "STAD = 향상점수 + 집단보상"
-            },
-            {
-                id: 143, topic: "직소(Jigsaw) 모형", type: "mcq",
-                q: "직소 I, II, III 모형의 특징에 대한 설명으로 옳은 것은?",
+                id: 28, topic: "직소(Jigsaw) 모형", type: "mcq",
+                q: "아론슨(Aronson)의 직소 모형들에 대한 비교 설명 중 올바른 것은?",
                 options: [
-                    "직소 I은 전문가 집단 활동 후 모집단으로 돌아가 가르친 뒤, 향상점수를 계산하여 집단 보상을 제공한다.",
-                    "직소 II는 직소 I과 동일하나, 향상점수와 집단 보상 제도를 도입하여 구성원 간의 의존성을 더욱 강화한 형태이다.",
-                    "직소 III는 직소 II에서 전문가 집단 활동을 생략하고 개인 평가만 실시하는 형태이다.",
-                    "직소 모형은 모두 보상 의존성이 과제 의존성보다 높다는 공통점을 가진다."
+                    "직소 I 모형은 집단보상을 제공하여 팀 내 상호작용을 극대화한다.",
+                    "직소 II 모형은 STAD의 평가 방식을 차용하여 '개인 점수'와 '향상 점수'에 기반한 집단 보상을 제공한다.",
+                    "직소 III 모형은 전문가 집단 활동을 완전히 생략하고 원소속 집단에서의 상호 티칭만을 강조한다.",
+                    "모든 직소 모형은 학생 개인의 책임감(개별 책무성)을 약화시키는 단점이 있다."
                 ],
-                a: "직소 II는 직소 I과 동일하나, 향상점수와 집단 보상 제도를 도입하여 구성원 간의 의존성을 더욱 강화한 형태이다.",
-                exp: "직소 I은 개별 보상만 있어 동기 부여가 약합니다. 이를 보완해 STAD의 향상점수와 집단보상을 결합한 것이 직소 II입니다. 직소 III는 평가 전 '휴지기(정리시간)'를 두는 것이 특징입니다.",
-                tip: "과제 분담의 효과를 높이기 위해 '직소 II' 모형을 활용하여, 각자 전문가가 되어 동료를 가르치게(과제 상호의존성) 할 뿐만 아니라 향상 점수를 통한 팀 보상(보상 상호의존성)도 병행해야 한다.",
-                m: "직소 1(과제분담) -> 직소 2(+STAD보상) -> 직소 3(+정리시간)"
+                a: "직소 II 모형은 STAD의 평가 방식을 차용하여 '개인 점수'와 '향상 점수'에 기반한 집단 보상을 제공한다.",
+                exp: "직소 I 모형은 과제상호의존성은 높으나 '보상의존성'이 낮다는 단점이 있었습니다. 이를 보완하기 위해 직소 II는 STAD의 '향상 점수에 따른 집단보상'을 결합하였습니다.",
+                tip: "전문가 집단 활동을 통한 '과제 상호의존성'과, STAD식 평가를 통한 '보상 상호의존성'을 동시에 충족시키는 직소 II 모형을 통해 진정한 협동학습을 구현해야 한다.",
+                m: "직소 I = 보상 없음 / 직소 II = STAD 보상 추가 / 직소 III = 퀴즈 전 정리시간 추가"
             },
             {
-                id: 144, topic: "TGT 모형", type: "short",
-                q: "STAD 모형과 진행 절차가 거의 유사하지만, 지루한 개별 시험(퀴즈) 대신 학습 능력이 비슷한 타 팀 학생들끼리 모여 게임 테이블에서 문제 풀이 대결을 펼치는 요소를 도입한 모형의 약자는 OOO(알파벳 3글자)이다.",
-                accepted: ["TGT", "tgt"],
-                a: "TGT (Teams-Games-Tournament)",
-                exp: "팀 내 협동과 팀 간 경쟁(토너먼트 게임)을 유도하여 흥미를 극대화합니다.",
-                tip: "시험에 대한 불안감이 높은 학생들을 위해 개별 평가 대신 'TGT 모형(게임 토너먼트)'을 도입하여, 학습 능력이 유사한 그룹 간의 건전한 경쟁 속에서 성취동기를 자극해야 한다.",
-                m: "퀴즈 대신 토너먼트 게임 = TGT"
-            },
-
-            // --- 9. 교수매체 및 공학 (ASSURE, 인지부하) ---
-            {
-                id: 145, topic: "ASSURE 모형", type: "short",
-                q: "하이니히의 ASSURE 모형 첫 단계는 '학습자 분석'이다. 여기서 교사는 학습자의 연령, 성별 같은 일반적 특성뿐만 아니라, 새로운 내용을 학습하기 전에 미리 갖추고 있어야 할 선수지식인 'OOO OO'(5글자)을 반드시 진단해야 한다.",
-                accepted: ["출발점행동", "출발점 행동"],
-                a: "출발점 행동",
-                exp: "학습자 분석은 일반적 특성, 출발점 행동(선행지식/기능), 학습양식 등을 파악하는 것입니다.",
-                tip: "매체를 활용한 수업 설계 전 진단평가를 통해 학습자의 '출발점 행동'과 디지털 기기 활용 능력을 선제적으로 파악하여 적합한 매체를 선정해야 한다.",
-                m: "ASSURE 1단계(A) = 일반적 특성 + 출발점 행동 + 학습양식"
+                id: 29, topic: "토의식 수업 - 배심회의(패널토의)", type: "short",
+                q: "상반된 견해를 가진 3~6명의 소수 대표자(배심원)가 일반 청중 앞에서 사회자의 진행에 따라 토의하는 방식으로, 구성원의 전문적 식견이 반드시 필요하지는 않지만 다수의 다양한 의견을 수렴할 수 있는 토의 방식은 무엇인가?",
+                accepted: ["배심회의", "패널", "패널토의"],
+                a: "배심회의(패널토의)",
+                exp: "패널토의는 찬반 양론의 대표들이 나와 토론하는 형식(예: 100분 토론)입니다. 반면 단상토의(심포지엄)는 각자 전문적 지식을 발표하는 강연 형식입니다.",
+                tip: "찬반 대립이 뚜렷한 사회적 이슈나 가치 판단 문제를 다룰 때, '패널토의'를 활용하여 학생들의 비판적 사고력과 타인의 의견을 경청하는 태도를 길러주어야 한다.",
+                m: "상반된 견해, 소수 대표자 = 패널토의(배심토의) / 전문 지식 발표 = 심포지엄"
             },
             {
-                id: 146, topic: "ASSURE 모형 (활용)", type: "mcq",
-                q: "ASSURE 모형의 '매체와 자료의 활용(U)' 단계에서 교사가 수행하는 5P 활동(사전검토, 자료준비, 환경준비, 학습자준비, 수업진행) 중 '학습자 준비'에 해당하는 내용은?",
+                id: 30, topic: "토의식 수업 - 버즈토의", type: "mcq",
+                q: "버즈(Buzz) 토의에 대한 설명으로 가장 적절한 것은?",
                 options: [
-                    "인터넷 연결선과 빔프로젝터가 잘 작동하는지 수업 전에 확인한다.",
-                    "수업 중 매체를 제시할 순서와 화면 전환 타이밍을 꼼꼼히 계획한다.",
-                    "수업 시작 시 오늘 볼 영상의 목적이 무엇이며, 시청 중 어느 부분에 주의를 기울여야 하는지 미리 알려준다.",
-                    "동영상 자료에 폭력적이거나 부적절한 내용은 없는지 하루 전에 끝까지 시청해 본다."
+                    "3~6명의 소집단이 동시에 짧은 시간(예: 6분) 동안 난상토론을 진행한 후 전체가 모여 결과를 정리한다.",
+                    "학생 두 명이 짝을 이루어 논쟁하듯 질문을 주고받는 유대인의 전통 토론 교육법이다.",
+                    "구성원들이 원탁에 둘러앉아 상호 대등한 자격으로 자유롭게 의견을 교환하는 가장 민주적인 토의다.",
+                    "특정 분야의 전문가들이 청중 앞에서 10~20분간 연설한 후 청중과 질의응답을 갖는 방식이다."
                 ],
-                a: "수업 시작 시 오늘 볼 영상의 목적이 무엇이며, 시청 중 어느 부분에 주의를 기울여야 하는지 미리 알려준다.",
-                exp: "학습자 준비는 학습자에게 학습 내용, 매체의 목적, 주의 집중할 요소 등의 정보를 미리 제공하여 동기를 유발하는 과정입니다.",
-                tip: "단순히 영상을 틀어주는 데 그치지 않고, 상영 전 '학습자 준비' 과정을 통해 관전 포인트와 학습 목표를 제시하여 인지적 능동성을 끌어내야 한다.",
-                m: "5P 중 학습자 준비 = 동기부여 및 관전 포인트 안내"
+                a: "3~6명의 소집단이 동시에 짧은 시간(예: 6분) 동안 난상토론을 진행한 후 전체가 모여 결과를 정리한다.",
+                exp: "벌이 윙윙거리는 소리 같다고 하여 이름 붙여진 버즈 토의(6-6토의)는 전체를 소집단으로 나누어 심리적 긴장감을 줄이고 모든 학생이 주체적으로 토의에 참여하게 하는 방식입니다.",
+                tip: "대집단 토의 시 발생하는 일부 학생의 독식 현상을 방지하기 위해, '버즈 토의'를 적용하여 소극적인 학생들도 부담 없이 의견을 나누도록 참여율을 극대화해야 한다.",
+                m: "소집단 동시 토론, 윙윙 = 버즈토의"
             },
             {
-                id: 147, topic: "인지부하 이론", type: "short",
-                q: "멀티미디어 학습 시 발생하는 3가지 인지부하 중, 학습자가 새로운 정보를 이해하고 기존 스키마(인지구조)에 통합하려는 정신적 노력으로, 문제해결이나 긍정적 학업 성취를 위해 방해받지 않고 '촉진'되어야 하는 인지부하를 'OOO 인지부하'라고 한다. 3글자는?",
-                accepted: ["본질적"],
-                a: "본질적 인지부하 (Germane Cognitive Load)",
-                exp: "내재적 부하(과제 자체 난이도)는 조절하고, 외생적 부하(불필요한 방해)는 감소시키며, 본질적 부하(스키마 형성 노력)는 촉진해야 합니다.",
-                tip: "교사는 화려한 특수효과로 인한 외생적 인지부하를 줄이고, 학습자가 핵심 원리를 파악하여 스키마를 구성하는 '본질적 인지부하'에 작업기억을 전적으로 투입하도록 개인화/자기설명 전략을 써야 한다.",
-                m: "부하 3형제 = 내재적(조절), 외생적(감소), 본질적(촉진!)"
-            },
-
-            // --- 10. 기타 중요한 트렌드 및 역량 ---
-            {
-                id: 148, topic: "자기주도학습 (메타인지)", type: "short",
-                q: "노울즈(Knowles)가 강조한 자기주도학습의 핵심은 자신의 인지, 동기, 행동을 스스로 계획-점검-조절하는 능력이다. 이처럼 '자신의 인지과정에 대한 인지(자신이 무엇을 알고 모르는지 자각)'를 뜻하는 4글자 용어는?",
-                accepted: ["메타인지", "초인지력"],
-                a: "메타인지 (초인지)",
-                exp: "디지털 정보 과잉 시대에 학습자가 길을 잃지 않으려면 스스로 학습을 통제하는 메타인지 전략(시연, 정교화, 점검, 조절)이 필수적입니다.",
-                tip: "온라인 자기주도학습 시 발생할 수 있는 나태함을 예방하기 위해, 교사는 성찰 일지나 체크리스트를 쓰게 하여 학생이 자신의 학습 과정을 스스로 조절하는 '메타인지' 역량을 훈련시켜야 한다.",
-                m: "인지에 대한 인지 = 메타인지"
+                id: 31, topic: "크론바흐 적성처치 상호작용(ATI)", type: "short",
+                q: "학습자의 개별적인 '적성(Aptitude)' 특성과 교사가 투입하는 교수 '처치(Treatment)' 방법에 따라 학업 성취가 다르게 나타나므로, 개인차를 고려한 다양한 교수방법을 적용해야 한다는 크론바흐의 이론은 무엇인가? (영문 약어 3글자)",
+                accepted: ["ATI", "ati"],
+                a: "ATI (적성-처치 상호작용 이론)",
+                exp: "모든 학생에게 동일하게 효과적인 단 하나의 최적 교수법은 없으며, 학생의 적성(지능, 성취동기 등)에 맞는 교수방법을 투입할 때 효과가 극대화된다는 이론입니다.",
+                tip: "학생들의 인지양식과 성취동기가 다양함을 인식하고, ATI 이론에 근거하여 개별 학습자의 특성에 최적화된 맞춤형 교수방법(다양한 처치)을 제공해야 한다.",
+                m: "적성(A) x 처치(T) = 상호작용(I)"
             },
             {
-                id: 149, topic: "크론바흐(Cronbach) ATI", type: "mcq",
-                q: "다양한 수준의 학생이 모인 교실에서, 크론바흐의 ATI(적성처치 상호작용) 이론이 주는 교육적 시사점으로 적절한 것은?",
+                id: 32, topic: "메타인지 및 자기주도학습", type: "mcq",
+                q: "자기주도학습을 성공적으로 수행하기 위한 초인지(Metacognition) 학습전략에 포함되지 않는 것은?",
                 options: [
-                    "학생들의 적성은 변하지 않으므로 우열반을 편성해야 한다.",
-                    "가장 뛰어난 단일 교수법을 개발하여 모든 학생에게 획일적으로 투입해야 한다.",
-                    "학생의 특성(불안, 동기 등)에 따라 효과적인 교수법이 다르므로 개별 맞춤형 교수 처치를 제공해야 한다.",
-                    "학생의 적성보다는 교사의 권위와 일방적 처치가 학업성취를 좌우한다."
+                    "학습 과정을 스스로 모니터링하고 평가하는 조절 및 점검 전략",
+                    "주어진 텍스트를 기계적으로 반복해서 암기하는 단순 시연 전략",
+                    "학습에 대한 자아효능감과 과제 가치 인식을 유지하는 동기 조절 전략",
+                    "집중할 수 있는 물리적 환경을 조성하고 주변에 도움을 요청하는 행동 조절 전략"
                 ],
-                a: "학생의 특성(불안, 동기 등)에 따라 효과적인 교수법이 다르므로 개별 맞춤형 교수 처치를 제공해야 한다.",
-                exp: "ATI 이론은 학습자의 적성(Aptitude)과 교수자의 처치(Treatment)가 상호작용(Interaction)하므로, 모두에게 완벽한 만능 교수법은 없으며 개별화 수업이 필요함을 주장합니다.",
-                tip: "학급 내 학력 편차를 극복하기 위해, ATI 이론에 근거하여 진단평가로 학습자의 불안도와 선수학습 수준(적성)을 파악하고 이에 맞는 다양한 에듀테크 기반 맞춤 처치(Treatment)를 적용해야 한다.",
-                m: "만능 교수법은 없다 = 개별 맞춤 처치 (ATI)"
+                a: "주어진 텍스트를 기계적으로 반복해서 암기하는 단순 시연 전략",
+                exp: "단순 시연(반복 암기)은 일반적인 인지 전략이며 초인지(메타인지) 전략이 아닙니다. 메타인지 전략은 자신의 인지 과정을 인지하고 계획, 점검, 조절하는 고차원적 전략입니다.",
+                tip: "학생의 자기주도학습 능력을 신장시키기 위해, 교사는 단편적 지식 전달을 넘어 스스로 학습 목표를 설정하고 점검하는 '메타인지 전략'을 명시적으로 가르쳐야 한다.",
+                m: "메타인지 = 계획, 점검, 조절, 평가 (인지에 대한 인지)"
             },
             {
-                id: 150, topic: "게이미피케이션", type: "mcq",
-                q: "에듀테크 수업에서 학생의 흥미 유지를 위해 '게이미피케이션(Gamification)'을 적용할 때 적절하지 않은 것은?",
+                id: 33, topic: "상보적 교수법", type: "mcq",
+                q: "팔린스카와 브라운(Palincsar & Brown)의 상보적 교수법(Reciprocal Teaching)에 사용되는 4가지 독해 전략이 아닌 것은?",
                 options: [
-                    "학습 과제 수행 시 포인트, 배지, 리더보드 등 즉각적이고 시각적인 피드백을 제공한다.",
-                    "단순 암기 과제에 의미를 부여하기 위해 세계관이나 스토리텔링(Cover Story) 요소를 결합한다.",
-                    "실패 시 강한 패널티를 주어 긴장감을 높이고, 한 번 틀리면 재도전할 수 없게 엄격히 제한한다.",
-                    "학습자의 현재 능력에 맞는 적절한 난이도의 과제를 레벨별로 제공하여 몰입(Flow)을 유도한다."
+                    "예측하기 (Predicting)",
+                    "요약하기 (Summarizing)",
+                    "조직화하기 (Organizing)",
+                    "명료화하기 (Clarifying)"
                 ],
-                a: "실패 시 강한 패널티를 주어 긴장감을 높이고, 한 번 틀리면 재도전할 수 없게 엄격히 제한한다.",
-                exp: "게이미피케이션의 가장 큰 교육적 장점은 '실패에 대한 두려움 없는 무제한 재도전 기회'를 제공하여 끈기(Grit)와 성취동기를 부여하는 것입니다.",
-                tip: "디지털 코스웨어를 활용한 복습 과정에 '게이미피케이션' 기법을 도입하여, 레벨업 보상과 안전한 재도전 기회를 통해 학생 스스로 동기를 부여하며 끈기 있게 학습하도록 설계해야 한다.",
-                m: "게임 요소 = 보상, 배지, 스토리, 안전한 재도전!"
+                a: "조직화하기 (Organizing)",
+                exp: "상보적 교수법의 4가지 주요 전략은 예측하기, 질문하기(Questioning), 명료화하기, 요약하기입니다. 이 과정을 통해 교사와 학생, 학생과 학생 간 역할을 교체하며 독해력을 향상시킵니다.",
+                tip: "학생들의 글 읽기 이해력을 높이기 위해, '상보적 교수법'을 활용하여 학생 주도로 질문을 만들고 내용을 요약하게 함으로써 자기주도적 독해 전략을 체득하게 해야 한다.",
+                m: "상보적 4전략 = 예·질·명·요 (예측, 질문, 명료화, 요약)"
             },
-            // --- 11. 교육학 필수 고전 이론 (추가 확충 20문항) ---
             {
-                id: 151, topic: "신교육목표분류학(Bloom)", type: "mcq",
-                q: "2001년 앤더슨 등이 개정한 신교육목표분류학의 특징으로 가장 옳은 것은?",
+                id: 34, topic: "자원기반학습", type: "short",
+                q: "자원기반학습에서 정보활용능력(정보 리터러시)을 기르기 위해 널리 사용되는 'Big 6 Skills' 모형의 첫 번째 단계는 학습자가 해결해야 할 문제를 명확히 인식하는 'OO OO' 단계이다. 빈칸은?",
+                accepted: ["과제 정의", "과제정의"],
+                a: "과제 정의",
+                exp: "Big 6 Skills의 절차: 1) 과제 정의 2) 정보탐색 전략 3) 소재 파악과 접근 4) 정보 활용 5) 통합 정리 6) 평가. 문제 인식이 가장 먼저 선행되어야 합니다.",
+                tip: "방대한 디지털 자원 속에서 학생들이 헤매지 않도록, 'Big 6 Skills' 모형을 적용하여 첫 단계인 '과제 정의'부터 정보의 통합 및 평가까지 체계적인 정보활용능력을 길러주어야 한다.",
+                m: "과정소 활통평 (과제정의, 정보탐색전략, 소재파악...)"
+            },
+            {
+                id: 35, topic: "코스웨어 개발 절차", type: "mcq",
+                q: "컴퓨터 및 인터넷 기반 수업에서 활용되는 소프트웨어인 코스웨어(Courseware) 개발 절차 중, 첫 화면에서 끝 화면까지 프로그램이 작동되는 논리 및 순서를 시각화하는 단계는?",
                 options: [
-                    "지식의 차원을 사실적, 개념적, 절차적, 메타인지 지식으로 세분화하여 독립시켰다.",
-                    "가장 높은 위계의 인지적 복합성을 '평가'로 유지하였다.",
-                    "인지과정 차원을 명사형으로 진술하여 명확성을 높였다.",
-                    "기존의 '종합' 단계를 완전히 삭제하고 새로운 범주를 만들지 않았다."
+                    "교수전략 및 상호작용 전략 설계",
+                    "흐름도(Flowchart) 작성",
+                    "스토리보드 작성",
+                    "개발 및 프로그래밍"
                 ],
-                a: "지식의 차원을 사실적, 개념적, 절차적, 메타인지 지식으로 세분화하여 독립시켰다.",
-                exp: "신교육목표분류학은 지식차원(4가지)과 인지과정차원(동사형)의 2차원 구조로 변경되었으며, 가장 높은 위계를 '창안하다(Create, 기존의 종합)'로 수정했습니다.",
-                tip: "수업 목표를 진술할 때, 인지과정뿐만 아니라 학생들이 스스로의 학습을 조절하는 '메타인지 지식'까지 포함시켜 고차원적 사고력을 자극해야 한다.",
-                m: "신블룸 = 지식차원 독립 + 창안하다(최상위)"
+                a: "흐름도(Flowchart) 작성",
+                exp: "전체적인 논리와 순서를 도식화하는 것은 '흐름도 작성'이며, 단위 화면별로 들어갈 구체적인 글씨체, 그림, 내용 전개 방식 등을 상세히 그리는 것은 '스토리보드 작성'입니다.",
+                tip: "효과적인 디지털 교육 콘텐츠(코스웨어) 제작을 위해, 사전에 '흐름도'를 작성하여 전체 논리를 점검하고, '스토리보드'를 통해 세부 인터페이스를 꼼꼼히 설계해야 한다.",
+                m: "전체 논리/순서 = 흐름도 / 단위 화면 상세화 = 스토리보드"
             },
             {
-                id: 152, topic: "정의적 영역 목표(Krathwohl)", type: "short",
-                q: "크래스월(Krathwohl)의 정의적 영역 내면화 단계는 수용(감수) -> 반응 -> 가치화 -> 조직화 -> OOO(3글자) 단계로 이루어진다. 가치 체계가 개인의 생활양식으로 완전히 굳어져 삶 속에서 실천되는 최종 단계를 무엇이라고 하는가?",
-                accepted: ["인격화", "내면화"],
-                a: "인격화 (Characterization)",
-                exp: "가치가 내면화되어 일관된 행동 양식으로 나타나는 인격화 단계입니다.",
-                tip: "도덕성이나 태도를 기르는 수업에서는 단기적 행동 변화를 넘어, 가치가 완전히 내면화되는 '인격화' 단계에 도달할 수 있도록 지속적인 실천 기회를 주어야 한다.",
-                m: "수/반/가/조/인 (수반가조인)"
+                id: 36, topic: "하이니히 ASSURE 모형", type: "short",
+                q: "하이니히(Heinich)의 ASSURE 모형 중 첫 번째 'A' 단계로, 교수매체를 선정하기 전에 학생들의 출발점 행동, 학습 양식, 연령 등을 파악하는 단계의 명칭은 무엇인가? (OOOOO)",
+                accepted: ["학습자분석", "학습자 분석"],
+                a: "학습자분석",
+                exp: "ASSURE의 첫 단계는 Analyze learners (학습자 분석)입니다. 매체와 자료를 효과적으로 활용하기 위해 대상의 일반적 특성과 선행 지식을 먼저 파악해야 합니다.",
+                tip: "테크놀로지를 활용한 수업 설계 전, '학습자 분석' 단계를 철저히 거쳐 학생들의 디지털 기기 친숙도와 학습 양식을 파악하여 적절한 매체를 선정해야 한다.",
+                m: "ASSURE = A(학습자) S(목표) S(매체선정) U(매체활용) R(참여유도) E(평가)"
             },
             {
-                id: 153, topic: "타일러(Tyler) 목표 진술", type: "short",
-                q: "타일러(Tyler)의 행동적 수업목표 진술 방식은 메이거와 달리 조건이나 준거를 엄격히 요구하지 않고, '학습 OO'(2글자)과 '도착점 행동'의 두 가지 요소로만 결합하여 진술한다. 빈칸은?",
-                accepted: ["내용"],
-                a: "내용",
-                exp: "타일러는 '이차방정식의 근의 공식을(내용) 이해한다(행동)'와 같이 내용+행동으로 명시합니다.",
-                tip: "수업 목표는 교사의 활동이 아닌 학생의 입장에서, 학습할 '내용'과 도달해야 할 '행동'을 결합하여 명시적으로 진술해야 한다.",
-                m: "타일러 = 내용 + 행동"
-            },
-            {
-                id: 154, topic: "켐프(Kemp) 교수설계모형", type: "mcq",
-                q: "켐프(Kemp)의 비선형적 교수설계모형에 대한 설명으로 가장 거리가 먼 것은?",
+                id: 37, topic: "인지부하 이론 (멀티미디어 설계)", type: "mcq",
+                q: "멀티미디어 학습 시 인지부하(Cognitive Load) 이론에 근거할 때, 학습을 촉진하는 '본질적 인지부하'를 높이기 위한 설계 원리로 적절한 것은?",
                 options: [
-                    "특정 출발점과 정해진 순서가 존재하지 않으며, 열려 있고 유연한 과정이다.",
-                    "설계 과정에서 학습자의 특성과 요구를 지속적으로 반영하는 융통성을 강조한다.",
-                    "형성평가, 총괄평가 등 평가의 중요성을 축소하고 빠른 개발(Rapid)에만 집중한다.",
-                    "교수 설계 요소들이 타원형(원형)으로 배치되어 순환적이고 역동적인 수정을 허용한다."
+                    "관련 없는 배경음악이나 화려한 애니메이션을 삭제한다. (결합/중복 원리)",
+                    "글과 그림을 물리적으로 가까이 배치한다. (근접성 원리)",
+                    "복잡한 자료를 제시하기 전에 관련 핵심 개념의 이름과 특성을 미리 제공한다. (사전 훈련 원리)",
+                    "학습자 스스로 문제 풀이 과정을 설명하게 하거나 성찰할 기회를 제공한다. (자기설명 원리)"
                 ],
-                a: "형성평가, 총괄평가 등 평가의 중요성을 축소하고 빠른 개발(Rapid)에만 집중한다.",
-                exp: "켐프 모형은 확인평가, 형성평가, 총괄평가를 구분하며 순환적 과정 내내 평가의 중요성을 매우 강조합니다.",
-                tip: "교육과정 설계 시 정해진 순서에 얽매이지 않고, 학생들의 요구와 피드백을 '순환적이고 비선형적'으로 반영하여 유연하게 수업을 수정해야 한다.",
-                m: "켐프 = 비선형적, 타원형, 평가 중시"
+                a: "학습자 스스로 문제 풀이 과정을 설명하게 하거나 성찰할 기회를 제공한다. (자기설명 원리)",
+                exp: "1,2번은 방해 요소인 '외생적 부하'를 줄이는 원리이고, 3번은 과제 자체 난이도인 '내재적 부하'를 관리하는 원리입니다. 스스로 설명하게 하는 것은 스키마 형성을 돕는 '본질적 인지부하' 촉진 원리입니다.",
+                tip: "제한된 작업기억 용량을 고려하여 불필요한 시각적 장식(외생적 부하)은 배제하고, 학습자가 스스로 개념을 연결하고 설명해 보는 '자기설명 원리(본질적 부하 촉진)'를 적용해야 한다.",
+                m: "내재적(과제 난이도) / 외생적(불필요한 방해) / 본질적(스키마 구축 노력=좋은 부하)"
             },
             {
-                id: 155, topic: "윌리스(Willis) R2D2 모형", type: "short",
-                q: "윌리스의 R2D2 모형은 객관주의 설계의 한계를 극복하기 위한 구성주의적 모형으로, 세 가지 초점인 OOO(Define), 설계 및 개발(Design & Development), 확산(Dissemination)의 상호작용을 강조한다. OOO에 들어갈 3글자는?",
-                accepted: ["정의화", "정의", "정의기"],
-                a: "정의 (Define)",
-                exp: "R2D2 모형은 초기 명시적 목표 설정을 배제하고 상황에 맞게 유연하게 '정의'해 나가는 과정을 중시합니다.",
-                tip: "현장의 맥락을 반영하기 위해, 설계자와 사용자가 지속적으로 상호작용하며 문제를 유연하게 '정의'해 나가는 구성주의적 R2D2 방식을 활용해야 한다.",
-                m: "R2D2 = 정의, 설계/개발, 확산 (사용자 참여 강조)"
+                id: 38, topic: "마이크로러닝", type: "short",
+                q: "학생들의 짧아진 집중력 유지 시간을 고려하여, 1~2가지 핵심 개념만을 담아 2~7분 내외로 소비할 수 있는 짧은 영상이나 콘텐츠 기반의 학습 방식을 무엇이라 하는가? (6글자)",
+                accepted: ["마이크로러닝", "microlearning"],
+                a: "마이크로러닝",
+                exp: "마이크로러닝은 짧고(bite-sized) 굵게 핵심만 전달하여, 스마트폰 등을 통해 자투리 시간에 개별 맞춤 학습을 하기 좋은 방법입니다.",
+                tip: "플립러닝 사전 영상 제공 시 긴 강의 대신 핵심 단위로 분절화된 '마이크로러닝' 콘텐츠를 제공하여 학생들의 인지 부하를 줄이고 시청 완강률을 높여야 한다.",
+                m: "2~7분, 짧고 핵심적인 모바일 학습 = 마이크로러닝"
             },
             {
-                id: 156, topic: "가네(Gagné) 학습의 조건", type: "short",
-                q: "가네는 성공적인 학습을 위해 내적 조건(선행학습, 동기 등)과 함께 3가지 '외적 조건'이 필요하다고 보았다. 외적 조건 3가지는 강화의 원리, 자극과 반응이 시간적으로 가까워야 한다는 접근의 원리, 그리고 충분한 OOO(3글자)의 원리이다. 빈칸은?",
-                accepted: ["반복", "연습"],
-                a: "연습(반복)",
-                exp: "파지와 전이를 증진하기 위해서는 충분한 연습(반복)이 필요합니다.",
-                tip: "학습 내용의 파지와 전이를 돕기 위해, 교사는 즉각적인 피드백(강화)과 함께 학습자가 배운 원리를 충분히 적용해 볼 수 있는 '연습'의 기회를 제공해야 한다.",
-                m: "가네 외적조건 = 강화, 접근, 연습"
-            },
-            {
-                id: 157, topic: "롸이겔루스 정교화이론", type: "short",
-                q: "롸이겔루스(Reigeluth)의 정교화 7가지 전략 중, 새로운 아이디어나 복잡한 개념을 학습자들에게 이미 친숙한 아이디어들과 연관 지어 설명하여 인지적 이해를 돕는 전략을 'OO'(2글자)라고 한다.",
-                accepted: ["비유", "유추"],
-                a: "비유",
-                exp: "비유(Analogy)는 낯선 지식을 기존의 익숙한 지식(스키마)에 빗대어 설명하는 강력한 교수 전략입니다.",
-                tip: "추상적이고 난해한 원리를 가르칠 때, 학생들의 실생활에서 익숙한 경험을 끌어와 '비유'를 사용함으로써 인지적 장벽을 낮춰야 한다.",
-                m: "정/선/요/종/비(비유)/인/학"
-            },
-            {
-                id: 158, topic: "오수벨(Ausubel) 유의미 학습", type: "short",
-                q: "오수벨의 수업 원리 중, 포괄적이고 일반적인 내용을 먼저 제시하고 점차 구체적이고 세부적인 특수한 내용으로 분화시켜 가며 가르쳐야 한다는 원리를 'OOO OO의 원리'라고 한다. 5글자는?",
-                accepted: ["점진적분화", "점진적 분화"],
-                a: "점진적 분화",
-                exp: "포괄 -> 세부 방향으로 가르치는 것이 점진적 분화의 원리입니다. 반대로 유사한 내용을 묶어주는 것은 통합적 조정의 원리입니다.",
-                tip: "효과적인 지식 구조화를 위해 단원의 뼈대가 되는 포괄적 개념을 먼저 제시하고, 이후 구체적 사례로 '점진적 분화'시켜 나가는 연역적 교수법을 적용해야 한다.",
-                m: "포괄 -> 세부 = 점진적 분화"
-            },
-            {
-                id: 159, topic: "PBL (문제중심학습)", type: "mcq",
-                q: "배로우즈(Barrows)의 문제중심학습(PBL)에서 활용되는 '문제'의 성격과 교사의 역할로 가장 적절한 것은?",
+                id: 39, topic: "실감미디어 (VR/AR)", type: "mcq",
+                q: "증강현실(AR), 가상현실(VR) 등을 아우르는 '실감미디어' 활용 수업의 특징으로 가장 거리가 먼 것은?",
                 options: [
-                    "정답이 한 가지로 정해져 있는 구조화된 문제를 제시하여 지식의 정확성을 높인다.",
-                    "학생들이 해결 방법을 찾지 못할 때 교사가 즉각적으로 모범 답안을 제시하여 효율성을 추구한다.",
-                    "실생활과 관련된 비구조화되고 복잡한 문제를 제시하고, 교사는 안내자이자 촉진자 역할을 한다.",
-                    "개별 학습을 원칙으로 하며, 동료와의 협동학습은 문제 해결의 독창성을 훼손하므로 배제한다."
+                    "우주나 과거 역사 현장 등 직접 가볼 수 없는 환경을 시뮬레이션하여 학습 체험을 제공한다.",
+                    "사용자의 '실재감(presence)'과 '몰입감(immersion)'을 최대로 높여주는 역할을 한다.",
+                    "단순 텍스트 기반의 학습보다 비용이 적게 들며, 어지럼증 등의 부작용이 전혀 없다.",
+                    "조작의 위험성이 높은 고가의 실험 장비 실습을 안전하게 가상 환경에서 대체할 수 있다."
                 ],
-                a: "실생활과 관련된 비구조화되고 복잡한 문제를 제시하고, 교사는 안내자이자 촉진자 역할을 한다.",
-                exp: "PBL의 문제는 복잡하고 실재적이며 비구조화된(정답이 열려 있는) 문제여야 합니다. 교사는 답을 주지 않고 촉진(Facilitator)합니다.",
-                tip: "학생들의 자기주도적 문제해결력 향상을 위해, 교사는 정답이 정해진 문제 대신 실생활과 직결된 '비구조화된 문제'를 제시하고 학습을 조력해야 한다.",
-                m: "PBL = 비구조화된 실제적 문제 + 교사는 촉진자"
+                a: "단순 텍스트 기반의 학습보다 비용이 적게 들며, 어지럼증 등의 부작용이 전혀 없다.",
+                exp: "실감미디어 장비 구축에는 높은 비용이 소요되며, 시각 피로나 어지러움증(사이버멀미) 등의 단점 및 기술적 제약이 존재합니다.",
+                tip: "추상적 과학 개념이나 위험한 실험을 지도할 때 '실감미디어'를 활용하여 몰입감을 극대화하되, 학생들의 시각 피로 등 신체적 부작용을 사전에 세심히 관리해야 한다.",
+                m: "실감미디어 = VR/AR, 실재감, 몰입감 극대화 (단, 비용/어지러움 주의)"
             },
             {
-                id: 160, topic: "프로젝트 학습(구안법)", type: "short",
-                q: "듀이와 킬패트릭의 프로젝트 학습(구안법) 절차는 1단계: 학생의 흥미에 맞는 목적 설정 -> 2단계: 대안 비교 및 계획 -> 3단계: OOO(3글자) -> 4단계: 평가 로 진행된다. 계획에 따라 실제 결과물을 만들어내는 3단계는 무엇인가?",
-                accepted: ["실행기", "실행", "수행"],
-                a: "실행 (또는 실행기)",
-                exp: "프로젝트 학습은 목적 - 계획 - 실행 - 평가의 4단계로 실생활의 문제를 닻(Anchor) 삼아 결과물을 만듭니다.",
-                tip: "지식의 단순 적용을 넘어 창조적 역량을 기르기 위해, 학생들이 주도적으로 '목적-계획-실행-평가'의 과정을 거치는 프로젝트 학습을 운영해야 한다.",
-                m: "구안법 = 목/계/실/평"
+                id: 40, topic: "게이미피케이션", type: "short",
+                q: "원래는 게임이 아닌 교육, 마케팅 등의 분야에 게임의 메커니즘(명확한 목표, 레벨업, 피드백, 보상 등)을 적용하여 사용자의 자발적인 참여와 몰입을 유도하는 기법을 무엇이라고 하는가?",
+                accepted: ["게이미피케이션", "gamification"],
+                a: "게이미피케이션",
+                exp: "교육에 게이미피케이션을 적용하면, 어려운 과제라도 레벨업 과정이나 즉각적인 보상 배지 등을 통해 학습 동기를 극적으로 끌어올릴 수 있습니다.",
+                tip: "장기적인 프로젝트 수업 시 학생의 흥미가 떨어지는 것을 막기 위해, 단계별 목표 달성 시 배지를 부여하는 등의 '게이미피케이션' 요소를 도입하여 내적 동기를 유발해야 한다.",
+                m: "게임 요소(레벨, 보상, 규칙) 적용 = 게이미피케이션"
             },
             {
-                id: 161, topic: "코스웨어 개발", type: "short",
-                q: "코스웨어(Courseware) 개발 절차 중, 개발 및 프로그래밍에 들어가기 직전 단계로 단위 화면의 내용, 그림, 메뉴, 화면 전환 방법, 글씨체 등을 상세화하여 시각적으로 설계한 기획 문서를 OOOOO(5글자)라고 한다.",
-                accepted: ["스토리보드"],
-                a: "스토리보드",
-                exp: "스토리보드는 플로차트 이후에 실제 화면 구현을 위해 모든 미디어 요소와 상호작용을 상세히 기술한 문서입니다.",
-                tip: "디지털 교수 자료나 코스웨어를 직접 제작할 때, 교수자는 철저한 '스토리보드' 작성을 통해 인지부하를 줄이는 시각적 화면 설계를 미리 기획해야 한다.",
-                m: "화면 상세 설계도 = 스토리보드"
-            },
-            {
-                id: 162, topic: "토의법 (포럼)", type: "short",
-                q: "1~3명의 전문가가 공개 연설을 한 후, 사회자의 진행하에 발표자와 '청중 전체'가 자유롭게 질의응답하고 토의하는 방식으로 청중의 참여 기회가 가장 넓게 열려있는 토의 방식을 OOO(3글자)이라고 한다.",
-                accepted: ["포럼", "forum"],
-                a: "포럼 (Forum)",
-                exp: "심포지엄이 발표자 위주라면, 포럼은 발표 후 다수의 청중과의 질의응답 및 상호작용에 초점을 둡니다. (예: 공청회)",
-                tip: "학교 폭력 예방과 같은 학급 내 중요 문제를 결정할 때, 특정 학생들만이 아닌 학급 구성원 전체가 참여하여 의견을 내는 '포럼' 방식을 적용해야 한다.",
-                m: "전문가 연설 + 청중 질의응답 = 포럼"
-            },
-            {
-                id: 163, topic: "자율적 협동학습(Co-op Co-op)", type: "mcq",
-                q: "카간(Kagan)의 자율적 협동학습(Co-op Co-op) 모형의 특징으로 가장 알맞은 것은?",
+                id: 41, topic: "거꾸로 학습(Flipped Learning)", type: "mcq",
+                q: "거꾸로 학습(플립러닝)에 대한 설명으로 올바른 것은?",
                 options: [
-                    "학생들이 자신이 맡은 부분만 집중하기 위해, 모둠 간의 협동이나 발표는 완전히 차단한다.",
-                    "집단 보상만을 유일한 보상으로 사용하여 개별 학생의 책임감을 줄여준다.",
-                    "교사와 학생이 함께 학습 과제를 선택하고, 모둠 내 협력과 모둠 간 협력을 동시에 추구하며 다면평가를 실시한다.",
-                    "지루함을 없애기 위해 학습보다는 게임 토너먼트 위주로 수업을 운영한다."
+                    "학생들은 교실 수업 중에 동영상 강의를 처음부터 끝까지 시청하며, 집에서 복잡한 문제 풀이 과제를 수행한다.",
+                    "교실 내 상호작용보다는 학생 개인의 독립적인 동영상 시청 훈련을 가장 중요시한다.",
+                    "수업 시간은 단순히 지식을 전달받는 시간이 아니라 고차원적 문제해결과 협동학습을 위한 시간으로 활용된다.",
+                    "사전 학습을 해오지 않은 학생을 위해 본 수업 시간의 절반 이상을 할애하여 영상 내용을 재강의해야 한다."
                 ],
-                a: "교사와 학생이 함께 학습 과제를 선택하고, 모둠 내 협력과 모둠 간 협력을 동시에 추구하며 다면평가를 실시한다.",
-                exp: "Co-op Co-op은 모둠 내 미니주제 협력 + 모둠 간 전체 학급 발표 협력을 결합하며, 동료/교사/학급 전체에 의한 다면평가가 특징입니다.",
-                tip: "학생들의 자율성과 탐구 능력을 높이기 위해, 주제 선정부터 결과 발표까지 학생 주도로 이루어지는 '자율적 협동학습'을 운영하고 다면평가를 적용해야 한다.",
-                m: "Co-op = 모둠 내 + 모둠 간 협력, 다면평가"
+                a: "수업 시간은 단순히 지식을 전달받는 시간이 아니라 고차원적 문제해결과 협동학습을 위한 시간으로 활용된다.",
+                exp: "플립러닝은 하위 수준의 인지활동(지식 습득)은 가정에서 영상으로, 상위 수준의 인지활동(적용, 문제해결, 토론)은 교실에서 교사와 동료의 도움을 받으며 수행하는 모델입니다.",
+                tip: "단순 지식의 기계적 전달은 사전 온라인 학습에 맡기고, 대면 교실 수업에서는 '고차원적 문제해결'과 '토론 및 협동' 활동에 온전히 시간을 투자하여 수업의 질을 높여야 한다.",
+                m: "지식 습득은 교실 밖, 문제 해결은 교실 안 = 플립러닝"
             },
             {
-                id: 164, topic: "집단조사(GI) 모형", type: "short",
-                q: "협동학습 중 학생들의 흥미에 따라 주제를 선택하고, 조사 계획 수립부터 집단 보고서 작성 및 발표까지 전 과정을 학생 주도로 이끌어가는 가장 개방적이고 민주적인 탐구 모형을 OOOO(4글자) 학습이라고 한다.",
-                accepted: ["집단조사", "그룹조사"],
-                a: "집단조사 (Group Investigation)",
-                exp: "팀 경쟁 요소가 없으며, 학생의 주도성과 민주적 의사결정 과정을 가장 중시하는 고급 협동학습 모형입니다.",
-                tip: "고차원적 사고와 민주적 태도를 기르기 위해, 교사가 일방적으로 과제를 주지 않고 학생들이 흥미에 따라 주제를 탐구하는 '집단조사' 모형을 활용해야 한다.",
-                m: "가장 개방적, 학생 주도 탐구 = 집단조사(GI)"
+                id: 42, topic: "블렌디드 러닝", type: "short",
+                q: "온라인 이러닝 환경이 제공하는 시공간적 유연성과 개별화 학습의 장점, 그리고 오프라인 면대면 교실 학습이 제공하는 인간적 상호작용의 장점을 혼합하여 시너지를 창출하는 수업 형태는? (OOOO OO)",
+                accepted: ["블렌디드러닝", "블렌디드 러닝", "blendedlearning"],
+                a: "블렌디드 러닝",
+                exp: "블렌디드 러닝(혼합형 학습)은 단순한 매체 통합을 넘어, 온·오프라인의 장점을 결합해 지속적 학습을 가능하게 하고 다각적 학업 성취도를 높입니다.",
+                tip: "디지털 기기의 한계인 정서적 유대감 부족을 극복하기 위해, '블렌디드 러닝' 체제를 구축하여 온라인 개별 맞춤 학습과 오프라인의 따뜻한 교사 멘토링을 결합해야 한다.",
+                m: "온라인(유연성) + 오프라인(상호작용) 결합 = 블렌디드 러닝"
             },
             {
-                id: 165, topic: "TAI (팀 보조 개별학습)", type: "short",
-                q: "학습 능력이 이질적인 4~5명으로 팀을 구성하되, 자신의 수준에 맞는 개별 학습지(프로그램)를 각자 풀고 단원 평가 시 팀원끼리 짝을 지어 교환 채점하며 서로 도와주는, '협동학습+개별학습'의 결합 형태 모형은 OOO(알파벳 3글자)이다.",
-                accepted: ["TAI", "tai"],
-                a: "TAI (Team Assisted Individualization)",
-                exp: "수학 과목 등에서 개인의 속도에 맞춘 개별학습의 장점과, 동료 튜터링을 통한 협동학습의 장점을 결합한 모형입니다.",
-                tip: "수준별 개별화 학습의 고립감을 해소하기 위해, 'TAI 모형'을 도입하여 개인 진도는 각자 나가되 모둠원끼리 교환 채점하고 질문을 주고받게 해야 한다.",
-                m: "개별 진도 + 동료 교환 채점 = TAI"
-            },
-            {
-                id: 166, topic: "교육매체 속성연구", type: "mcq",
-                q: "교육매체 연구 동향 중 '속성연구'에 대한 설명으로 옳은 것은?",
+                id: 43, topic: "CSCL (컴퓨터 기반 협력학습)", type: "mcq",
+                q: "CSCL 환경에서 교사가 제공하는 '학습지원도구' 중, 원격지에 있는 학습자 상호 간의 원활한 소통(채팅, 화상회의 등)을 돕는 도구는 무엇인가?",
                 options: [
-                    "전통적 강의법과 컴퓨터 활용 수업 중 어느 것이 더 성취도가 높은지 상호 비교하는 데 주력한다.",
-                    "매체가 학습 성과에 미치는 영향은 전혀 없으며, 오직 교사의 교수법만이 중요하다고 주장한다.",
-                    "매체가 지닌 특정 물리적·기호적 속성(예: 3D, 하이퍼텍스트)이 학습자의 인지적 과정에 어떤 고유한 영향을 미치는지 탐구한다.",
-                    "동일한 학습 내용을 다른 매체로 전달했을 때 발생하는 비용 효율성만을 경제적으로 분석한다."
+                    "시각화 도구 (Visualizing tools)",
+                    "수행지원 도구 (Performance support tools)",
+                    "의사소통 도구 (Communication tools)",
+                    "협업 도구 (Collaboration tools)"
                 ],
-                a: "매체가 지닌 특정 물리적·기호적 속성(예: 3D, 하이퍼텍스트)이 학습자의 인지적 과정에 어떤 고유한 영향을 미치는지 탐구한다.",
-                exp: "매체 비교연구(A매체 vs B매체)의 한계를 극복하고, 매체의 특정 '속성'이 학습자의 인지 과정과 어떻게 상호작용하는지 미시적으로 분석하는 것이 속성연구입니다.",
-                tip: "무조건 최신 매체를 도입하기보다는, 해당 매체의 '물리적 속성(예: VR의 입체감)'이 도달하고자 하는 학습 목표의 인지 과정에 필수적인가를 우선 검토해야 한다.",
-                m: "매체 연구 = 비교연구(A vs B) -> 속성연구(인지과정 상호작용)"
+                a: "의사소통 도구 (Communication tools)",
+                exp: "CSCL 도구는 시각화도구(마인드맵 등), 수행지원도구(계산기, 번역기 등 인지부담 경감), 의사소통도구(원격 소통 지원), 협업도구(클라우드 공동 문서 편집 등)로 나뉩니다.",
+                tip: "에듀테크 기반의 모둠 활동 시, 물리적 제약을 극복할 수 있도록 클라우드 기반의 '협업 도구'와 실시간 '의사소통 도구'를 제공하여 진정한 협력학습을 견인해야 한다.",
+                m: "인지 짐 덜기 = 수행지원 / 원격 대화 = 의사소통 / 공동 작업 공간 = 협업도구"
             },
             {
-                id: 167, topic: "스마트(SMART) 교육", type: "short",
-                q: "정보통신기술을 활용하여 21세기 학습자 역량을 기르는 SMART 교육에서 'A'는 학습자의 수준과 적성에 맞는 융통성 있는 맞춤형 학습을 의미하는 'OOOO(4글자)적'을 뜻한다. 빈칸은?",
-                accepted: ["적응형학", "적응적인", "맞춤형", "적응형"],
-                a: "적응형 / 맞춤형 (Adaptive)",
-                exp: "S(Self-directed), M(Motivated), A(Adaptive), R(Resource free), T(Technology embedded)",
-                tip: "획일적인 교육에서 벗어나 클라우드와 AI를 활용하여 학생의 학습 수준에 맞게 콘텐츠가 변화하는 '적응형(Adaptive)' 교육을 실현해야 한다.",
-                m: "SMART의 A = Adaptive (적응형/맞춤형)"
-            },
-            {
-                id: 168, topic: "액션러닝 (Action Learning)", type: "short",
-                q: "소규모의 그룹이 실제 직면한 문제(과제)를 해결하기 위해 아이디어를 도출하고, 그 해결책을 현장에 직접 '적용'해 보는 실천적 학습 프로세스이다. 교사는 정답을 주지 않고 질문을 통해 성찰을 촉진하는 러닝 코치 역할을 하는 이 교수법은 OOOO(4글자)이다.",
-                accepted: ["액션러닝", "실천학습"],
-                a: "액션러닝 (Action Learning)",
-                exp: "문제해결 과정에서 지식과 스킬을 학습하고, 실제 행동(Action)을 통해 조직/개인의 역량을 개선합니다.",
-                tip: "이론적인 문제 해결에 그치지 않고, 학생들이 도출한 환경 보호 캠페인 계획을 학교 현장에 직접 실행해보게 하는 '액션러닝'을 통해 실천력을 길러주어야 한다.",
-                m: "실제 문제 + 현장 적용 + 코치 = 액션러닝"
-            },
-            {
-                id: 169, topic: "블렌디드 러닝 설계", type: "mcq",
-                q: "e-러닝과 블렌디드 러닝 설계 시 교사(설계자)가 주의해야 할 사항으로 가장 올바른 것은?",
+                id: 44, topic: "AI 디지털 교과서", type: "mcq",
+                q: "2026년부터 전면 도입되는 AI 디지털 교과서의 특장점과 가장 관련이 적은 것은?",
                 options: [
-                    "디지털 기술의 화려한 기능(기법)을 과시하기 위해 가급적 복잡한 테크놀로지를 전면 배치해야 한다.",
-                    "전체 학습 과제를 큰 단위로 뭉뚱그려 제시하여 학습자가 전체 그림만 파악하도록 유도한다.",
-                    "온라인 학습 후 즉각적인 온라인 평가를 실시하고, 실패 시 다시 학습 후 재평가하는 완전학습 과정을 시스템에 설계한다.",
-                    "학습 내용의 계열화나 관리 전략보다는 오프라인 강의식 수업의 비중을 90% 이상으로 유지한다."
+                    "종이 서책과 달리 동영상, 3D 콘텐츠 등 다양한 미디어를 품을 수 있다.",
+                    "모든 학생에게 동일한 속도와 순서로 고정된 지식을 일방적으로 전송하는 데 최적화되어 있다.",
+                    "학생의 학습 데이터(로그)를 실시간으로 수집, 분석하여 개별 성취 수준에 맞는 맞춤형 피드백을 제공한다.",
+                    "정답 여부뿐만 아니라 학습자의 문제 풀이 시간, 오답 패턴 등을 분석하여 대시보드 형태로 교사에게 제공한다."
                 ],
-                a: "온라인 학습 후 즉각적인 온라인 평가를 실시하고, 실패 시 다시 학습 후 재평가하는 완전학습 과정을 시스템에 설계한다.",
-                exp: "e-러닝/블렌디드 러닝은 소단위 분절, 즉각적 피드백, 완전학습 시스템 구현이 중요합니다. 기법보다는 내용 중심으로 설계해야 합니다.",
-                tip: "온라인 코스웨어 설계 시 전체 과제를 소단위(모듈)로 나누어 제공하고, 퀴즈 통과 시 다음 단계로 넘어가는 '완전학습' 시스템을 구축해야 한다.",
-                m: "e러닝 설계 = 소단위 + 즉각 평가 + 완전학습지향"
+                a: "모든 학생에게 동일한 속도와 순서로 고정된 지식을 일방적으로 전송하는 데 최적화되어 있다.",
+                exp: "AI 디지털 교과서의 핵심 철학은 획일적 지식 주입이 아닌 '학습자 맞춤형 개별화 교육'입니다. 데이터를 바탕으로 학생마다 다른 난이도의 과제와 경로를 제안합니다.",
+                tip: "교사는 AI 디지털 교과서가 제공하는 학습 분석 대시보드 데이터를 활용하여, 학생 개개인의 취약점을 실시간으로 진단하고 선제적인 처방(개별화 지도)을 제공해야 한다.",
+                m: "AI 디지털 교과서 핵심 = 데이터 기반 실시간 맞춤형 개별화 교육"
             },
             {
-                id: 170, topic: "교수방법 비교 (학습자 중심 vs 교사 중심)", type: "short",
-                q: "학습자 중심의 구성주의 교육에서는 지식 습득의 결과물만을 암기했는지 묻는 규준지향평가(상대평가)를 지양하고, 실제적 과제 수행 능력과 문제해결능력을 갖추었는가를 확인하기 위해 성취 기준 도달 여부를 확인하는 'OOOO평가'(4글자) 혹은 수행평가를 지향한다. 빈칸은?",
-                accepted: ["목표지향", "절대평가", "준거지향"],
-                a: "목표지향평가 (준거지향평가)",
-                exp: "교사 중심은 규준지향평가(서열), 학습자 중심은 목표지향평가(성취) 및 다면적 수행평가를 지향합니다.",
-                tip: "학생들의 능동적인 역량 발달을 확인하기 위해, 획일적인 상대평가를 벗어나 학생 개인의 실질적 과제 수행 능력을 점검하는 '수행평가'와 '목표지향평가'를 확대해야 한다.",
-                m: "구성주의 평가 = 목표지향, 수행평가, 포트폴리오"
+                id: 45, topic: "메이거(Mager) 목표 진술", type: "mcq",
+                q: "메이거의 방식에 따라 올바르게 진술된 행동목표로 가장 적합한 것은?",
+                options: [
+                    "학생은 르네상스의 역사적 의의를 깊이 이해할 수 있다.",
+                    "학생은 이차방정식의 원리를 완벽하게 깨닫고 수학에 흥미를 갖는다.",
+                    "지도와 나침반이 주어졌을 때, 10분 이내에 목적지를 찾아가는 경로를 펜으로 표시할 수 있다.",
+                    "구성주의 학습 이론의 장단점을 충분히 습득하고 실생활에 적용할 수 있다."
+                ],
+                a: "지도와 나침반이 주어졌을 때, 10분 이내에 목적지를 찾아가는 경로를 펜으로 표시할 수 있다.",
+                exp: "이해한다, 깨닫는다, 습득한다는 관찰 및 측정이 불가능한 암시적 동사입니다. 메이거 식은 조건(지도와 나침반), 준거(10분 이내에), 행동(표시할 수 있다)이 명시되어야 합니다.",
+                tip: "평가의 객관성과 타당도를 확보하기 위해, 수업 목표는 '이해한다'와 같은 추상적 동사가 아닌 관찰 가능한 구체적 행위 동사를 사용하여 진술되어야 한다.",
+                m: "추상적(이해, 깨닫) X / 구체적(작성하다, 구별하다, 표시하다) O"
+            },
+            {
+                id: 46, topic: "가네 9가지 수업사태", type: "mcq",
+                q: "가네의 수업사태 중 작동기억에서 장기기억으로 정보를 유의미하게 '부호화(Encoding)'하도록 돕는 교수 활동인 5번째 단계는 무엇인가?",
+                options: [
+                    "학습목표 제시",
+                    "선행학습 회상 자극",
+                    "자극자료 제시",
+                    "학습안내 제공"
+                ],
+                a: "학습안내 제공",
+                exp: "5단계 '학습안내 제공(Provide learning guidance)'은 단순 자극(4단계)을 넘어, 기억술, 도표, 단서 등을 제공하여 학습자가 정보를 의미 있게 부호화(저장)하도록 돕는 단계입니다.",
+                tip: "학생들의 성공적인 정보 저장을 위해 단순히 내용을 제시하는 데 그치지 않고, 정보를 범주화하거나 기억술을 활용하는 '학습안내 제공' 단계를 통해 유의미한 부호화를 도와야 한다.",
+                m: "정보의 유의미 부호화 촉진 = 학습안내 제공 (힌트, 단서 제공)"
+            },
+            {
+                id: 47, topic: "켈러 ARCS - 자신감", type: "short",
+                q: "켈러의 ARCS 모형 중, 학습자가 과제를 성공적으로 완수할 수 있다는 믿음을 심어주기 위해 쉬운 문제에서 점차 어려운 문제로 나아가게 하여 '성공의 기회'를 제공하는 것은 4가지 영역 중 무엇에 해당하는가? (3글자)",
+                accepted: ["자신감", "자신감(C)"],
+                a: "자신감",
+                exp: "자신감(Confidence) 고양 전략으로는 명확한 학습목표 및 평가기준 제시(필요조건 제시), 쉬운 것부터 제시(성공의 기회), 학습 속도 통제권 부여(개인적 통제감)가 있습니다.",
+                tip: "누적된 실패로 무기력에 빠진 학습자를 돕기 위해, 초기에 달성하기 쉬운 과제를 제시하여 '성공의 기회'를 맛보게 함으로써 학습에 대한 '자신감'을 회복시켜 주어야 한다.",
+                m: "자신감(C) 향상 = 필요조건 제시, 성공의 기회, 개인 통제감 부여"
+            },
+            {
+                id: 48, topic: "교수매체 속성연구", type: "mcq",
+                q: "교수매체 연구의 흐름 중 매체 자체의 하드웨어적 차이보다 매체가 가진 '기호, 부호, 기법' 등의 물리적/구조적 속성이 학습자의 인지 과정에 어떻게 영향을 미치는지를 탐구하는 연구 방식은?",
+                options: [
+                    "매체 비교 연구 (Media Comparison Studies)",
+                    "매체 속성 연구 (Media Attributes Studies)",
+                    "비용 효과 분석 연구 (Cost-Benefit Analysis)",
+                    "매체 효과성 무용론 (Clark's No Significant Difference)"
+                ],
+                a: "매체 속성 연구 (Media Attributes Studies)",
+                exp: "단순히 'A매체가 B매체보다 학업성취도가 높은가'를 비교하는 것은 '비교연구'이며, 특정 매체의 속성(화면 줌인, 분할 등)이 인지작용에 주는 효과를 보는 것이 '속성연구'입니다.",
+                tip: "새로운 테크놀로지를 도입할 때 무조건적인 매체 비교보다는, 해당 매체의 고유한 '속성(상호작용성, 시뮬레이션 등)'이 학습자의 특정 인지 발달에 어떻게 부합하는지를 분석하여 적용해야 한다.",
+                m: "성취도 차이만 비교 = 비교연구 / 인지적 영향력 분석 = 속성연구"
+            },
+            {
+                id: 49, topic: "팀 티칭(Team Teaching)", type: "short",
+                q: "2인 이상의 교사가 상호 협력하여 학생 집단을 지도하는 방식으로, 각 교사의 전문성을 극대화하고 수업의 융통성을 도모할 수 있는 교수법을 무엇이라고 하는가? (3글자)",
+                accepted: ["팀티칭", "팀 티칭"],
+                a: "팀티칭",
+                exp: "유능한 교사와 경험이 적은 교사를 짝지어 시너지를 내거나, 다교과 융합 수업을 진행할 때 팀티칭을 활용합니다.",
+                tip: "주제 중심 융합 수업의 내실화를 위해, 관련 교과 교사들이 공동으로 계획하고 전문성을 발휘하는 '팀 티칭'을 도입하여 교사 간 협동적 교실 문화를 구축해야 한다.",
+                m: "두 명 이상의 교사가 협동 지도 = 팀 티칭"
+            },
+            {
+                id: 50, topic: "블룸 완전학습모형", type: "mcq",
+                q: "블룸(Bloom)의 완전학습모형에서 강조하는 '완전학습'의 기준과 평가 방식에 대한 설명으로 올바른 것은?",
+                options: [
+                    "상위 10%의 우수 학생들만이 100점 만점을 받도록 난이도를 극도로 높게 조절하는 학습이다.",
+                    "대부분의 학생들(약 95% 이상)이 수업 내용의 90% 이상을 학습(이해)하는 것을 목표로 한다.",
+                    "평가 방식은 학생 간의 서열을 중시하는 규준지향평가(상대평가)를 주로 활용해야 한다.",
+                    "수업 후 실시하는 형성평가는 성적 산출에 직접적으로 반영하여 학습 동기를 유발한다."
+                ],
+                a: "대부분의 학생들(약 95% 이상)이 수업 내용의 90% 이상을 학습(이해)하는 것을 목표로 한다.",
+                exp: "완전학습은 지적 능력이 정상인 95%의 학생에게 적절한 학습 기회(시간)를 주면 90% 이상의 성취를 이룰 수 있다는 모델입니다. 형성평가는 진단과 교정을 위함이지 성적에 반영하지 않으며, 절대평가(목표지향평가)를 지향합니다.",
+                tip: "학습 부진아를 방치하지 않고 '완전학습'에 도달시키기 위해, 교사는 서열화 중심의 평가에서 벗어나 지속적인 '형성평가'와 '보충학습 시간'을 제공해야 한다.",
+                m: "블룸 완전학습 = 95%의 학생이 90% 이상 성취 (형성평가+보충과정 필수)"
             }
         ];
         
         let currentMode = 'all';
         let activeQuestions = [];
         let currentIndex = 0;
-        let incorrectQuestions = JSON.parse(localStorage.getItem('santaTrendsIncorrect')) || [];
+        let incorrectQuestions = JSON.parse(localStorage.getItem('santaMethodsIncorrect')) || [];
         let score = 0;
         let isAnswerSubmitted = false;
 
@@ -985,9 +810,11 @@
             currentMode = mode;
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 if(btn.dataset.mode === mode) {
-                    btn.className = "tab-btn px-6 py-2.5 rounded-full font-bold bg-indigo-600 text-white shadow-md transition";
+                    btn.classList.remove('tab-inactive');
+                    btn.classList.add('tab-active');
                 } else {
-                    btn.className = "tab-btn px-6 py-2.5 rounded-full font-bold text-slate-500 hover:bg-slate-100 transition relative";
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
                 }
             });
             startQuiz();
@@ -1001,7 +828,7 @@
                 case 'mcq': pool = masterQuestions.filter(q => q.type === 'mcq'); break;
                 case 'incorrect':
                     if(incorrectQuestions.length === 0) {
-                        alert("오답 노트가 비어 있습니다. 전체 트렌드 모의고사를 시작합니다.");
+                        alert("오답 노트가 비어 있습니다. 전체 모의고사를 시작합니다.");
                         setMode('all');
                         return;
                     }
@@ -1028,7 +855,7 @@
             DOM.feedbackCard.classList.add('hidden');
             DOM.feedbackCard.classList.remove('flex');
             DOM.submitBtn.classList.remove('hidden');
-            DOM.nextBtn.parentElement.classList.add('hidden'); // wrap nextBtn in a div in HTML if needed, handled via parent logic or directly
+            DOM.nextBtn.parentElement.classList.add('hidden');
             DOM.quizScreen.classList.remove('shake');
             
             const q = activeQuestions[currentIndex];
@@ -1054,16 +881,15 @@
                         <span class="text-slate-700 leading-relaxed font-medium text-[17px] transition-colors">${opt}</span>
                     `;
                     
-                    // Click effect for unsubmitted state
                     label.addEventListener('click', function() {
                         if(isAnswerSubmitted) return;
                         document.querySelectorAll('.option-label').forEach(l => {
-                            l.classList.remove('ring-2', 'ring-indigo-500', 'border-indigo-500', 'bg-indigo-50/50');
-                            l.querySelector('.option-circle').classList.replace('bg-indigo-600', 'bg-slate-100');
+                            l.classList.remove('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]');
+                            l.querySelector('.option-circle').classList.replace('bg-primary', 'bg-slate-100');
                             l.querySelector('.option-circle').classList.replace('text-white', 'text-slate-500');
                         });
-                        this.classList.add('ring-2', 'ring-indigo-500', 'border-indigo-500', 'bg-indigo-50/50');
-                        this.querySelector('.option-circle').classList.replace('bg-slate-100', 'bg-indigo-600');
+                        this.classList.add('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]');
+                        this.querySelector('.option-circle').classList.replace('bg-slate-100', 'bg-primary');
                         this.querySelector('.option-circle').classList.replace('text-slate-500', 'text-white');
                     });
 
@@ -1073,7 +899,7 @@
             } else {
                 DOM.inputArea.innerHTML = `
                     <input type="text" id="short-answer-input" autocomplete="off" placeholder="정답을 입력하세요 (엔터키로 즉시 채점)" 
-                           class="w-full text-lg p-5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition">
+                           class="w-full text-[17px] p-5 border border-slate-200 rounded-xl bg-slate-50 focus:bg-white focus:outline-none focus:border-primary focus:ring-2 focus:ring-[#D9D6FE] transition font-medium text-slate-800">
                 `;
                 setTimeout(() => {
                     const inputEl = document.getElementById('short-answer-input');
@@ -1115,8 +941,7 @@
                 document.querySelectorAll('input[name="answer"]').forEach(radio => {
                     const label = radio.closest('label');
                     radio.disabled = true;
-                    // Reset selection styles
-                    label.classList.remove('ring-2', 'ring-indigo-500', 'border-indigo-500', 'bg-indigo-50/50', 'hover:bg-slate-50');
+                    label.classList.remove('ring-2', 'ring-primary', 'border-primary', 'bg-[#EEEDFC]', 'hover:bg-slate-50');
                     label.classList.add('cursor-default');
                     
                     if(radio.value === q.a) {
@@ -1141,7 +966,7 @@
                 
                 if(isCorrect) {
                     inputEl.classList.replace('border-slate-200', 'border-emerald-500');
-                    inputEl.classList.replace('focus:border-indigo-500', 'focus:border-emerald-500');
+                    inputEl.classList.replace('focus:border-primary', 'focus:border-emerald-500');
                     inputEl.classList.add('bg-emerald-50', 'text-emerald-900', 'font-bold');
                 } else {
                     inputEl.classList.replace('border-slate-200', 'border-rose-500');
@@ -1166,7 +991,7 @@
                     incorrectQuestions.push(qId);
                 }
             }
-            localStorage.setItem('santaTrendsIncorrect', JSON.stringify(incorrectQuestions));
+            localStorage.setItem('santaMethodsIncorrect', JSON.stringify(incorrectQuestions));
             updateIncorrectBadge();
         }
 
@@ -1175,13 +1000,13 @@
             DOM.feedbackCard.classList.add('flex');
             
             if(isCorrect) {
-                DOM.resultBanner.className = "p-5 rounded-xl font-bold text-lg flex items-center shadow-sm bg-emerald-50 text-emerald-700 border border-emerald-100";
+                DOM.resultBanner.className = "p-5 rounded-xl font-bold text-lg flex items-center shadow-sm bg-[#F0FDF4] text-[#15803D] border border-[#DCFCE7]";
                 DOM.resultIcon.innerHTML = "🎉";
-                DOM.resultMessage.innerHTML = `정답입니다! 공식 정답은 <span class="mx-1 px-2 py-0.5 bg-emerald-200/50 rounded">[ ${q.a} ]</span> 입니다.`;
+                DOM.resultMessage.innerHTML = `정답입니다! 공식 정답은 <span class="mx-1 px-2 py-0.5 bg-[#BBF7D0] rounded">[ ${q.a} ]</span> 입니다.`;
             } else {
-                DOM.resultBanner.className = "p-5 rounded-xl font-bold text-lg flex items-center shadow-sm bg-pink-50 text-pink-700 border border-pink-100";
+                DOM.resultBanner.className = "p-5 rounded-xl font-bold text-lg flex items-center shadow-sm bg-[#FEF2F2] text-[#B91C1C] border border-[#FEE2E2]";
                 DOM.resultIcon.innerHTML = "💡";
-                DOM.resultMessage.innerHTML = `아쉽습니다. 공식 정답은 <span class="mx-1 px-2 py-0.5 bg-pink-200/50 rounded">[ ${q.a} ]</span> 입니다.`;
+                DOM.resultMessage.innerHTML = `아쉽습니다. 공식 정답은 <span class="mx-1 px-2 py-0.5 bg-[#FECACA] rounded">[ ${q.a} ]</span> 입니다.`;
             }
 
             DOM.explanationText.textContent = q.exp;
